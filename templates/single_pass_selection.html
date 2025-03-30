@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Single Pass Selection - Disney World Lightning Lane Planner{% endblock %}
+
+{% block progress %}
+<div class="progress-bar mt-4">
+    <div class="progress-step completed" id="step1">
+        1
+        <span class="progress-label">Trip Info</span>
+    </div>
+    <div class="progress-step completed" id="step2">
+        2
+        <span class="progress-label">Travel Dates</span>
+    </div>
+    <div class="progress-step completed" id="step3">
+        3
+        <span class="progress-label">Park Selection</span>
+    </div>
+    <div class="progress-step active" id="step4">
+        4
+        <span class="progress-label">Attractions</span>
+    </div>
+    <div class="progress-step" id="step5">
+        5
+        <span class="progress-label">Results</span>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card disney-card">
+            <div class="card-header disney-card-header">
+                <h2 class="card-title mb-0">Step 4: Lightning Lane Single Pass Selection</h2>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <p><strong>Lightning Lane Single Pass</strong> provides access to the most popular attractions. These are in addition to the standard Lightning Lane Multi Pass.</p>
+                    <p>You can select up to 2 Single Passes per day (additional cost).</p>
+                </div>
+                
+                <form method="POST" action="{{ url_for('single_pass_selection') }}">
+                    {% for park_info in parks_info %}
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">{{ park_info.name }} - {{ park_info.date }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Available Lightning Lane Single Pass attractions:</p>
+                            
+                            {% if park_info.attractions|length > 0 %}
+                                <div class="mb-3">
+                                    {% for attraction in park_info.attractions %}
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input single-pass-checkbox" 
+                                               type="checkbox" 
+                                               name="attractions_{{ park_info.index }}" 
+                                               value="{{ attraction.name }}" 
+                                               id="attr_{{ park_info.index }}_{{ loop.index }}"
+                                               data-park-index="{{ park_info.index }}">
+                                        <label class="form-check-label" for="attr_{{ park_info.index }}_{{ loop.index }}">
+                                            {{ attraction.name }} (${{ attraction.min_cost }}-${{ attraction.max_cost }} per person)
+                                        </label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <p class="text-muted small">Note: Maximum of 2 Single Passes per day.</p>
+                            {% else %}
+                                <p>No Lightning Lane Single Pass attractions available for this park.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                    <div class="text-center mt-4">
+                        <a href="{{ url_for('park_selection') }}" class="btn btn-secondary me-2">Back</a>
+                        <button type="submit" class="btn btn-primary disney-btn-primary">See Results</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const checkboxes = document.querySelectorAll('.single-pass-checkbox');
+        
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                const parkIndex = this.getAttribute('data-park-index');
+                const parkCheckboxes = document.querySelectorAll(`.single-pass-checkbox[data-park-index="${parkIndex}"]`);
+                
+                let checkedCount = 0;
+                parkCheckboxes.forEach(function(cb) {
+                    if (cb.checked) {
+                        checkedCount++;
+                    }
+                });
+                
+                if (checkedCount > 2) {
+                    this.checked = false;
+                    alert('You can only select a maximum of 2 Single Passes per day.');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

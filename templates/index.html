@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome - Disney World Lightning Lane Planner{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card disney-card">
+            <div class="card-header disney-card-header">
+                <h2 class="card-title mb-0">Welcome to the Disney World Lightning Lane Planner!</h2>
+            </div>
+            <div class="card-body">
+                <p class="lead">Planning a trip to Disney World? Let us help you navigate the Lightning Lane system to make the most of your visit.</p>
+                
+                <h4 class="mt-4">About Lightning Lane Options:</h4>
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-header text-center">
+                                <h5>Multi Pass</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Standard Lightning Lane service for most attractions.</p>
+                                <p>Book up to 3 attractions in advance.</p>
+                                <p>$15-39 per person, per day</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-header text-center">
+                                <h5>Single Pass</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Individual Lightning Lane access for the most popular attractions.</p>
+                                <p>Purchase separately from Multi Pass.</p>
+                                <p>$15-25 per attraction, per person</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-header text-center">
+                                <h5>Premier Pass</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Unlimited Lightning Lane access at one park.</p>
+                                <p>No scheduling or return times needed.</p>
+                                <p>$129-449 per person, per day</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5">
+                    <p>Our planner will help you:</p>
+                    <ul class="list-unstyled">
+                        <li>✨ Compare costs for different Lightning Lane strategies</li>
+                        <li>✨ Optimize your budget for maximum ride efficiency</li>
+                        <li>✨ Find park-specific recommendations for your trip dates</li>
+                        <li>✨ Get expert tips for each Disney World park</li>
+                    </ul>
+                    
+                    <a href="{{ url_for('user_info') }}" class="btn btn-lg btn-primary disney-btn-primary mt-4">Start Planning</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

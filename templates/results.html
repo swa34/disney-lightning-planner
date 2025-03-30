@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+
+{% block title %}Your Disney Lightning Lane Plan - Disney World Lightning Lane Planner{% endblock %}
+
+{% block progress %}
+<div class="progress-bar mt-4">
+    <div class="progress-step completed" id="step1">
+        1
+        <span class="progress-label">Trip Info</span>
+    </div>
+    <div class="progress-step completed" id="step2">
+        2
+        <span class="progress-label">Travel Dates</span>
+    </div>
+    <div class="progress-step completed" id="step3">
+        3
+        <span class="progress-label">Park Selection</span>
+    </div>
+    <div class="progress-step completed" id="step4">
+        4
+        <span class="progress-label">Attractions</span>
+    </div>
+    <div class="progress-step active" id="step5">
+        5
+        <span class="progress-label">Results</span>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card disney-card mb-4">
+        <div class="card-header disney-card-header">
+            <h2 class="card-title mb-0">Your Personalized Lightning Lane Plan</h2>
+        </div>
+        <div class="card-body">
+            <h3>Your Trip Summary</h3>
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Party Size:</strong> {{ user_data.adults }} adults{% if user_data.children > 0 %}, {{ user_data.children }} children{% endif %}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Resort Guest:</strong> {% if user_data.resort_guest %}Yes{% else %}No{% endif %}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Park Hopper:</strong> {% if user_data.park_hopping %}Yes{% else %}No{% endif %}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Trip Itinerary</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for date, park in zip(user_data.travel_dates, user_data.parks) %}
+                            <li class="list-group-item">{{ date.strftime('%a, %b %d') }}: {{ park }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scenarios -->
+    <h3 class="mb-3">Lightning Lane Options</h3>
+    
+    <div class="row mb-5">
+        <!-- Scenario tabs -->
+        <div class="col-md-12">
+            <ul class="nav nav-tabs" id="scenarioTabs" role="tablist">
+                {% for scenario_key, scenario in scenarios.items() %}
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link {% if loop.first %}active{% endif %}" 
+                            id="{{ scenario_key }}-tab" 
+                            data-bs-toggle="tab" 
+                            data-bs-target="#{{ scenario_key }}" 
+                            type="button" 
+                            role="tab" 
+                            aria-controls="{{ scenario_key }}" 
+                            aria-selected="{% if loop.first %}true{% else %}false{% endif %}">
+                        {{ scenario.name }}
+                    </button>
+                </li>
+                {% endfor %}
+            </ul>
+            
+            <div class="tab-content pt-4" id="scenarioTabContent">
+                {% for scenario_key, scenario in scenarios.items() %}
+                <div class="tab-pane fade {% if loop.first %}show active{% endif %}" id="{{ scenario_key }}" role="tabpanel" aria-labelledby="{{ scenario_key }}-tab">
+                    <div class="card scenario-card">
+                        <div class="card-body">
+                            <h4 class="scenario-header">{{ scenario.name }}</h4>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-8">
+                                    <h5>Daily Breakdown:</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Park</th>
+                                                    <th>Cost Range</th>
+                                                    <th>Single Passes</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for daily in scenario.daily %}
+                                                <tr>
+                                                    <td>{{ daily.date.split(',')[0] }}</td>
+                                                    <td>{{ daily.park }}</td>
+                                                    <td>${{ daily.min }} - ${{ daily.max }}</td>
+                                                    <td>
+                                                        {% if daily.single_passes is defined and daily.single_passes|length > 0 %}
+                                                            {{ daily.single_passes|join(', ') }}
+                                                        {% else %}
+                                                            None
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                            <tfoot class="table-light">
+                                                <tr>
+                                                    <th colspan="2">Total Cost</th>
+                                                    <th colspan="2">${{ scenario.total_min }} - ${{ scenario.total_max }}</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <div class="card-header">
+                                            <h5 class="mb-0">Recommendation</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            {% if scenario_key == "scenario1" %}
+                                                <p>This option provides comprehensive coverage with your selected Lightning Lane Single Passes combined with Multi Pass for most attractions.</p>
+                                            {% elif scenario_key == "scenario2" %}
+                                                <p>Best for budget-conscious visitors who are willing to use standby lines for the most popular attractions or visit during low-crowd periods.</p>
+                                            {% elif scenario_key == "scenario3" %}
+                                                <p>Premier Pass is very expensive but offers maximum convenience. Consider this option for just one day of your trip at your highest-priority park, rather than for every day.</p>
+                                            {% elif scenario_key == "scenario4" %}
+                                                {% if user_data.include_single_pass %}
+                                                    <p>This mixed approach offers the best balance of cost and experience. It prioritizes Lightning Lane passes where they save you the most time and skips them where they're less critical.</p>
+                                                {% else %}
+                                                    <p>This approach focuses on Multi Pass value while avoiding the additional cost of Single Passes. You'll need to use rope drop strategies or standby lines for the premium attractions.</p>
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Park Recommendations -->
+    <h3 class="mb-3">Park-by-Park Recommendations</h3>
+    
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs" id="parkTabs" role="tablist">
+                {% for park, park_data in park_recommendations.items() %}
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link {% if loop.first %}active{% endif %}" 
+                            id="{{ park|replace(' ', '-')|lower }}-tab" 
+                            data-bs-toggle="tab" 
+                            data-bs-target="#{{ park|replace(' ', '-')|lower }}" 
+                            type="button" 
+                            role="tab" 
+                            aria-controls="{{ park|replace(' ', '-')|lower }}" 
+                            aria-selected="{% if loop.first %}true{% else %}false{% endif %}">
+                        {{ park }}
+                    </button>
+                </li>
+                {% endfor %}
+            </ul>
+            
+            <div class="tab-content pt-4" id="parkTabContent">
+                {% for park, park_data in park_recommendations.items() %}
+                <div class="tab-pane fade {% if loop.first %}show active{% endif %}" 
+                     id="{{ park|replace(' ', '-')|lower }}" 
+                     role="tabpanel" 
+                     aria-labelledby="{{ park|replace(' ', '-')|lower }}-tab">
+                    
+                    <div class="card park-card">
+                        <div class="card-body">
+                            <h4 class="park-header">{{ park }} - {{ park_data.date }}</h4>
+                            
+                            <div class="row mt-4">
+                                <div class="col-md-6">
+                                    <h5>Recommended Lightning Lane Selections:</h5>
+                                    
+                                    {% if park_data.recommended.tiers %}
+                                        <div class="attraction-tier">
+                                            <h6>Tier 1 (Choose 1):</h6>
+                                            <ul>
+                                                {% for attraction in park_data.recommended.tier1 %}
+                                                <li>{{ attraction }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        
+                                        <div class="attraction-tier">
+                                            <h6>Tier 2 (Choose 2):</h6>
+                                            <ul>
+                                                {% for attraction in park_data.recommended.tier2 %}
+                                                <li>{{ attraction }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    {% else %}
+                                        <div class="attraction-tier">
+                                            <h6>Recommended Attractions:</h6>
+                                            <ul>
+                                                {% for attraction in park_data.recommended.attractions %}
+                                                <li>{{ attraction }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    {% endif %}
+                                    
+                                    {% if user_data.include_single_pass %}
+                                        <h5 class="mt-4">Your Selected Single Passes:</h5>
+                                        {% if park_data.single_passes|length > 0 %}
+                                            <ul>
+                                                {% for pass in park_data.single_passes %}
+                                                <li>{{ pass.name }} (${{ pass.min }}-${{ pass.max }} per person)</li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% else %}
+                                            <p>None selected for this park.</p>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card h-100">
+                                        <div class="card-header">
+                                            <h5 class="mb-0">Tips for {{ park }}</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="tip-list">
+                                                {% for tip in park_data.tips %}
+                                                <li>{{ tip }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- General Tips -->
+    <div class="card disney-card mb-5">
+        <div class="card-header disney-card-header">
+            <h3 class="card-title mb-0">General Lightning Lane Tips</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Booking Windows:</h5>
+                    <ul class="tip-list">
+                        <li>Resort guests: 7 days before check-in at 7 AM Eastern Time</li>
+                        <li>Off-site guests: 3 days before park visit at 7 AM Eastern Time</li>
+                    </ul>
+                    
+                    <h5>Multi Pass Strategy:</h5>
+                    <ul class="tip-list">
+                        <li>Pre-book your 3 attractions before your trip</li>
+                        <li>Use tier rules: 1 Tier 1 + 2 Tier 2 attractions (except Animal Kingdom)</li>
+                        <li>After using your first Lightning Lane, immediately book your next one</li>
+                        <li>You can modify existing bookings without canceling them</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5>Single Pass Strategy:</h5>
+                    <ul class="tip-list">
+                        <li>Book as early in the day as possible for popular attractions</li>
+                        <li>Purchase early as these often sell out in advance</li>
+                        <li>Remember you can purchase up to 2 Single Passes per day across all parks</li>
+                    </ul>
+                    
+                    <h5>Additional Tips:</h5>
+                    <ul class="tip-list">
+                        {% for tip in general_tips %}
+                        <li>{{ tip }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="text-center mb-5">
+        <a href="{{ url_for('index') }}" class="btn btn-lg btn-primary disney-btn-primary">Start New Plan</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // JavaScript for managing tabs and other interactivity
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize tabs
+        var triggerTabList = [].slice.call(document.querySelectorAll('#scenarioTabs button, #parkTabs button'))
+        triggerTabList.forEach(function (triggerEl) {
+            var tabTrigger = new bootstrap.Tab(triggerEl)
+            
+            triggerEl.addEventListener('click', function (event) {
+                event.preventDefault()
+                tabTrigger.show()
+            })
+        })
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Park Selection - Disney World Lightning Lane Planner{% endblock %}
+
+{% block progress %}
+<div class="progress-bar mt-4">
+    <div class="progress-step completed" id="step1">
+        1
+        <span class="progress-label">Trip Info</span>
+    </div>
+    <div class="progress-step completed" id="step2">
+        2
+        <span class="progress-label">Travel Dates</span>
+    </div>
+    <div class="progress-step active" id="step3">
+        3
+        <span class="progress-label">Park Selection</span>
+    </div>
+    <div class="progress-step" id="step4">
+        4
+        <span class="progress-label">Attractions</span>
+    </div>
+    <div class="progress-step" id="step5">
+        5
+        <span class="progress-label">Results</span>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card disney-card">
+            <div class="card-header disney-card-header">
+                <h2 class="card-title mb-0">Step 3: Choose Your Parks</h2>
+            </div>
+            <div class="card-body">
+                <p class="lead">For each day of your trip, select which Disney World park you'll be visiting:</p>
+                
+                <form method="POST" action="{{ url_for('park_selection') }}">
+                    {% for date in dates %}
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Day {{ loop.index }}: {{ date.formatted }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">Select Park:</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="radio" name="park_{{ loop.index0 }}" id="mk_{{ loop.index }}" value="Magic Kingdom" required>
+                                            <label class="form-check-label" for="mk_{{ loop.index }}">
+                                                Magic Kingdom
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="radio" name="park_{{ loop.index0 }}" id="ep_{{ loop.index }}" value="EPCOT">
+                                            <label class="form-check-label" for="ep_{{ loop.index }}">
+                                                EPCOT
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="radio" name="park_{{ loop.index0 }}" id="hs_{{ loop.index }}" value="Hollywood Studios">
+                                            <label class="form-check-label" for="hs_{{ loop.index }}">
+                                                Hollywood Studios
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="radio" name="park_{{ loop.index0 }}" id="ak_{{ loop.index }}" value="Animal Kingdom">
+                                            <label class="form-check-label" for="ak_{{ loop.index }}">
+                                                Animal Kingdom
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                    <div class="text-center mt-4">
+                        <a href="{{ url_for('travel_dates') }}" class="btn btn-secondary me-2">Back</a>
+                        <button type="submit" class="btn btn-primary disney-btn-primary">Next Step</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

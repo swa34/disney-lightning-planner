@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}Your Trip Info - Disney World Lightning Lane Planner{% endblock %}
+
+{% block progress %}
+<div class="progress-bar mt-4">
+    <div class="progress-step active" id="step1">
+        1
+        <span class="progress-label">Trip Info</span>
+    </div>
+    <div class="progress-step" id="step2">
+        2
+        <span class="progress-label">Travel Dates</span>
+    </div>
+    <div class="progress-step" id="step3">
+        3
+        <span class="progress-label">Park Selection</span>
+    </div>
+    <div class="progress-step" id="step4">
+        4
+        <span class="progress-label">Attractions</span>
+    </div>
+    <div class="progress-step" id="step5">
+        5
+        <span class="progress-label">Results</span>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card disney-card">
+            <div class="card-header disney-card-header">
+                <h2 class="card-title mb-0">Step 1: Tell Us About Your Trip</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('user_info') }}">
+                    <div class="mb-4">
+                        <h4>Who's Coming?</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="adults" class="form-label">Adults (age 10+):</label>
+                                <input type="number" class="form-control" id="adults" name="adults" min="1" value="2" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="children" class="form-label">Children (under 10):</label>
+                                <input type="number" class="form-control" id="children" name="children" min="0" value="0" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4>Lightning Lane Options</h4>
+                        <div class="alert alert-info">
+                            <p><strong>Lightning Lane Single Pass</strong> is for premium attractions like:</p>
+                            <ul>
+                                <li>TRON Lightcycle / Run and Seven Dwarfs Mine Train (Magic Kingdom)</li>
+                                <li>Guardians of the Galaxy (EPCOT)</li>
+                                <li>Rise of the Resistance (Hollywood Studios)</li>
+                                <li>Avatar Flight of Passage (Animal Kingdom)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="include_single_pass" id="include_single_yes" value="yes" checked>
+                            <label class="form-check-label" for="include_single_yes">
+                                Include Lightning Lane Single Passes in calculations
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="include_single_pass" id="include_single_no" value="no">
+                            <label class="form-check-label" for="include_single_no">
+                                Exclude Lightning Lane Single Passes (budget option)
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="alert alert-info">
+                            <p><strong>Premier Pass</strong> (formerly Platinum) is the highest tier and allows unlimited Lightning Lane access at one park without booking return times.</p>
+                            <p>This is a premium option ($129-$449 per person per day).</p>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="include_premier" id="include_premier_yes" value="yes" checked>
+                            <label class="form-check-label" for="include_premier_yes">
+                                Include Premier Pass in my options
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="include_premier" id="include_premier_no" value="no">
+                            <label class="form-check-label" for="include_premier_no">
+                                Exclude Premier Pass (too expensive for me)
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4>Accommodation & Tickets</h4>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="resort_guest" id="resort_yes" value="yes">
+                            <label class="form-check-label" for="resort_yes">
+                                We're staying at a Disney Resort hotel
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="resort_guest" id="resort_no" value="no" checked>
+                            <label class="form-check-label" for="resort_no">
+                                We're staying off-site
+                            </label>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="park_hopping" id="hopping_yes" value="yes">
+                            <label class="form-check-label" for="hopping_yes">
+                                We have Park Hopper tickets
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="park_hopping" id="hopping_no" value="no" checked>
+                            <label class="form-check-label" for="hopping_no">
+                                We have standard (one park per day) tickets
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-lg btn-primary disney-btn-primary">Next: Travel Dates</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
