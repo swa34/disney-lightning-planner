@@ -3,26 +3,29 @@
 {% block title %}Your Trip Info - Disney World Lightning Lane Planner{% endblock %}
 
 {% block progress %}
-<div class="progress-bar mt-4">
-    <div class="progress-step active" id="step1">
-        1
-        <span class="progress-label">Trip Info</span>
-    </div>
-    <div class="progress-step" id="step2">
-        2
-        <span class="progress-label">Travel Dates</span>
-    </div>
-    <div class="progress-step" id="step3">
-        3
-        <span class="progress-label">Park Selection</span>
-    </div>
-    <div class="progress-step" id="step4">
-        4
-        <span class="progress-label">Attractions</span>
-    </div>
-    <div class="progress-step" id="step5">
-        5
-        <span class="progress-label">Results</span>
+<div class="progress-container">
+    <div class="progress-bar"></div>
+    <div class="nav-circles">
+        <div class="nav-circle active" id="step1">
+            1
+            <span class="nav-label">Trip Info</span>
+        </div>
+        <div class="nav-circle" id="step2">
+            2
+            <span class="nav-label">Travel Dates</span>
+        </div>
+        <div class="nav-circle" id="step3">
+            3
+            <span class="nav-label">Park Selection</span>
+        </div>
+        <div class="nav-circle" id="step4">
+            4
+            <span class="nav-label">Attractions</span>
+        </div>
+        <div class="nav-circle" id="step5">
+            5
+            <span class="nav-label">Results</span>
+        </div>
     </div>
 </div>
 {% endblock %}
