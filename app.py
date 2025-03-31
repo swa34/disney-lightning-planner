@@ -9,12 +9,14 @@ from disney_planner import DisneyLightningLanePlanner
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
+# For the index route - no changes needed
 @app.route('/')
 def index():
     # Clear session data when starting fresh
     session.clear()
     return render_template('index.html')
 
+# For the user_info route - add current_step=1
 @app.route('/user_info', methods=['GET', 'POST'])
 def user_info():
     if request.method == 'POST':
@@ -40,8 +42,9 @@ def user_info():
         # Redirect to travel dates page
         return redirect(url_for('travel_dates'))
     
-    return render_template('user_info.html')
+    return render_template('user_info.html', current_step=1)
 
+# For the travel_dates route - add current_step=2
 @app.route('/travel_dates', methods=['GET', 'POST'])
 def travel_dates():
     if request.method == 'POST':
@@ -69,8 +72,9 @@ def travel_dates():
         
         return redirect(url_for('park_selection'))
     
-    return render_template('travel_dates.html')
+    return render_template('travel_dates.html', current_step=2)
 
+# For the park_selection route - add current_step=3
 @app.route('/park_selection', methods=['GET', 'POST'])
 def park_selection():
     if request.method == 'POST':
@@ -111,8 +115,9 @@ def park_selection():
             'formatted': date.strftime('%A, %B %d, %Y')
         })
     
-    return render_template('park_selection.html', dates=dates)
+    return render_template('park_selection.html', dates=dates, current_step=3)
 
+# For the single_pass_selection route - add current_step=4
 @app.route('/single_pass_selection', methods=['GET', 'POST'])
 def single_pass_selection():
     # Get planner from session
@@ -150,8 +155,9 @@ def single_pass_selection():
             'attractions': attractions
         })
     
-    return render_template('single_pass_selection.html', parks_info=parks_info)
+    return render_template('single_pass_selection.html', parks_info=parks_info, current_step=4)
 
+# For the results route - add current_step=5
 @app.route('/results')
 def results():
     # Get planner from session
@@ -232,7 +238,8 @@ def results():
         scenarios=scenarios,
         park_recommendations=park_recommendations,
         general_tips=planner.general_tips,
-        zip=zip  # Add this line to pass the zip function
+        zip=zip,  # Add this line to pass the zip function
+        current_step=5  # Add this line for the progress bar
     )
 
 if __name__ == '__main__':
