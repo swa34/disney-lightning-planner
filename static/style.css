@@ -176,3 +176,72 @@
         width: 95%;
     }
 }
+
+/* Add these styles to your CSS to match progress-step with nav-circle styles */
+.progress-step {
+    width: 28px;
+    height: 28px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--disney-blue);
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
+}
+
+.progress-step.active {
+    background-color: var(--disney-yellow);
+    color: #000;
+}
+
+.progress-step.completed {
+    background-color: var(--disney-purple);
+    color: white;
+}
+
+.progress-label {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    color: white;
+    font-size: 0.8rem;
+}
+
+/* Make progress-bar match the design */
+.progress-bar.mt-4 {
+    display: flex;
+    justify-content: space-between;
+    height: 4px;
+    position: relative;
+    background-color: white;
+    width: 80%;
+    margin: 20px auto;
+    margin-bottom: 30px;
+}
+
+/* Fix position of progress steps */
+.progress-bar.mt-4 .progress-step {
+    position: relative;
+    top: -12px;
+}
+
+/* Responsive adjustments for the progress bar */
+@media (max-width: 768px) {
+    .progress-label {
+        font-size: 0.6rem;
+    }
+    
+    .progress-step {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .progress-bar.mt-4 {
+        width: 95%;
+    }
+}
