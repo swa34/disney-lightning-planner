@@ -177,8 +177,38 @@
     }
 }
 
-/* Add these styles to your CSS to match progress-step with nav-circle styles */
-.progress-step {
+/* Common styling for both progress navigation systems */
+.progress-container, .progress-bar.mt-4 {
+    width: 80%;
+    margin: 20px auto;
+    position: relative;
+}
+
+/* Line styling for both systems */
+.progress-bar, .progress-bar.mt-4::before {
+    content: "";
+    position: absolute;
+    height: 4px;
+    background-color: white;
+    width: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.progress-bar.mt-4::before {
+    top: 50%;
+}
+
+/* Container for navigation steps */
+.nav-circles, .progress-bar.mt-4 {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+/* Styling for both types of navigation circles */
+.nav-circle, .progress-step {
     width: 28px;
     height: 28px;
     background-color: white;
@@ -192,17 +222,20 @@
     z-index: 2;
 }
 
-.progress-step.active {
+/* Active state for both systems */
+.nav-circle.active, .progress-step.active {
     background-color: var(--disney-yellow);
     color: #000;
 }
 
-.progress-step.completed {
+/* Completed state for both systems */
+.nav-circle.completed, .progress-step.completed {
     background-color: var(--disney-purple);
     color: white;
 }
 
-.progress-label {
+/* Label styling for both systems */
+.nav-label, .progress-label {
     position: absolute;
     top: 30px;
     left: 50%;
@@ -212,36 +245,24 @@
     font-size: 0.8rem;
 }
 
-/* Make progress-bar match the design */
-.progress-bar.mt-4 {
-    display: flex;
-    justify-content: space-between;
-    height: 4px;
-    position: relative;
-    background-color: white;
-    width: 80%;
-    margin: 20px auto;
-    margin-bottom: 30px;
-}
-
-/* Fix position of progress steps */
+/* Adjust position for progress steps in mt-4 container */
 .progress-bar.mt-4 .progress-step {
     position: relative;
     top: -12px;
 }
 
-/* Responsive adjustments for the progress bar */
+/* Responsive adjustments for both systems */
 @media (max-width: 768px) {
-    .progress-label {
+    .nav-label, .progress-label {
         font-size: 0.6rem;
     }
     
-    .progress-step {
+    .nav-circle, .progress-step {
         width: 25px;
         height: 25px;
     }
     
-    .progress-bar.mt-4 {
+    .progress-container, .progress-bar.mt-4 {
         width: 95%;
     }
 }
