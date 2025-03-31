@@ -224,8 +224,8 @@
 
 .progress-label {
     position: absolute;
-    top: 1000px;
-    left: 50%;
+    top: 35px;
+    left: 10%;
     transform: translateX(-50%);
     font-size: 0.8rem;
     white-space: nowrap;
