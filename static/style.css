@@ -266,3 +266,45 @@
         width: 95%;
     }
 }
+/* Additional fix for label alignment */
+.progress-step .progress-label {
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 0.8rem;
+    color: white;
+    width: max-content; /* This ensures labels don't wrap */
+}
+
+/* Make sure the progress bar has enough bottom margin */
+.progress-bar.mt-4 {
+    margin-bottom: 50px; /* Increase this value to make room for labels */
+}
+
+/* Fine-tune positioning of circles on the line */
+.progress-bar.mt-4 .progress-step {
+    position: relative;
+    top: -14px; /* Adjust this to center circles on the line */
+    margin: 0 -3px; /* Adjust horizontal spacing */
+}
+
+/* Make the circles stand out better */
+.progress-step {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+    z-index: 3; /* Ensure circles are above the line */
+}
+
+/* Set color for completed steps */
+.progress-step:nth-child(1),
+.progress-step:nth-child(2) {
+    background-color: var(--disney-purple);
+    color: white;
+}
+
+/* Set color for active step (step 3 in your screenshot) */
+.progress-step:nth-child(3) {
+    background-color: var(--disney-yellow);
+    color: #000;
+}
