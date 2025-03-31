@@ -108,7 +108,7 @@
 /* The text label below each step number */
 .progress-label {
     position: absolute;
-    top: 35px;
+    top: 200px;
     left: 260%;
     transform: translateX(-50%);
     font-size: 0.8rem;
