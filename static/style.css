@@ -225,13 +225,31 @@
 .progress-label {
     position: absolute;
     top: 35px;
-    left: 260% !important;
+    left: 50%;             /* Center it horizontally */
     transform: translateX(-50%);
     font-size: 0.8rem;
     white-space: nowrap;
     color: white;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .progress-bar {
+        width: 95%;
+    }
+    
+    .progress-step {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+    }
+    
+    .progress-label {
+        font-size: 0.7rem;
+    }
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
