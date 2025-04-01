@@ -1,0 +1,2955 @@
+[
+  {
+    "name": "Aloha Isle",
+    "location": "Magic Kingdom - Adventureland",
+    "type": "Quick Service (Snacks)",
+    "cuisine": "American (Tropical Treats)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://disneyworld.disney.go.com/dining/magic-kingdom/aloha-isle/menus/",
+    "ddp": "Snacks (eligible for snack credits)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Jungle Navigation Co. Ltd. Skipper Canteen",
+    "location": "Magic Kingdom - Adventureland",
+    "type": "Table Service",
+    "cuisine": "Asian/African fusion",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/skipper-canteen/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Sunshine Tree Terrace",
+    "location": "Magic Kingdom - Adventureland",
+    "type": "Quick Service (Snacks)",
+    "cuisine": "American (Frozen treats)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/sunshine-tree-terrace/all-day/",
+    "ddp": "Snacks (eligible for snack credits)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Tortuga Tavern",
+    "location": "Magic Kingdom - Adventureland",
+    "type": "Quick Service",
+    "cuisine": "American (BBQ/Mexican)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/tortuga-tavern/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Be Our Guest Restaurant",
+    "location": "Magic Kingdom - Fantasyland",
+    "type": "Signature Dining (Table Service)",
+    "cuisine": "French-inspired American",
+    "price": {
+      "tier": "$$$$",
+      "adult": "Prix fixe ~$67 per adult",
+      "child": "~$39 per child"
+    },
+    "menu_url": "https://disneyworld.disney.go.com/dining/magic-kingdom/be-our-guest-restaurant/menus/",
+    "ddp": "2 Table Service credits",
+    "has_characters": true,
+    "characters": [
+      "Beast (appears at dinner)"
+    ]
+  },
+  {
+    "name": "Cheshire Caf\u00e9",
+    "location": "Magic Kingdom - Fantasyland",
+    "type": "Quick Service (Snacks)",
+    "cuisine": "American (Pastries, slushes)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/cheshire-cafe/all-day/",
+    "ddp": "Snacks (eligible for snack credits)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Cinderella's Royal Table",
+    "location": "Magic Kingdom - Fantasyland",
+    "type": "Table Service (Character Dining)",
+    "cuisine": "American",
+    "price": {
+      "tier": "$$$$",
+      "adult": "$74 (breakfast) \u2013 $88 (lunch/dinner) per adult",
+      "child": "$45\u2013$52 per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/cinderellas-royal-table/lunch-dinner/",
+    "ddp": "2 Table Service credits",
+    "has_characters": true,
+    "characters": [
+      "Cinderella",
+      "Ariel",
+      "Aurora",
+      "Snow White"
+    ]
+  },
+  {
+    "name": "The Friar's Nook",
+    "location": "Magic Kingdom - Fantasyland",
+    "type": "Quick Service",
+    "cuisine": "American (Snacks and comfort food)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/friars-nook/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Gaston's Tavern",
+    "location": "Magic Kingdom - Fantasyland",
+    "type": "Quick Service (Snacks)",
+    "cuisine": "American (Snacks, sweets)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/gastons-tavern/all-day/",
+    "ddp": "Snacks (eligible for snack credits)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Pinocchio Village Haus",
+    "location": "Magic Kingdom - Fantasyland",
+    "type": "Quick Service",
+    "cuisine": "Italian (Pizza & pasta)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/pinocchio-village-haus/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "The Diamond Horseshoe",
+    "location": "Magic Kingdom - Frontierland",
+    "type": "Table Service (All-You-Care-to-Enjoy)",
+    "cuisine": "American (BBQ)",
+    "price": {
+      "tier": "$$$",
+      "adult": "Prix fixe ~$39 per adult",
+      "child": "~$23 per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/diamond-horseshoe/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Golden Oak Outpost",
+    "location": "Magic Kingdom - Frontierland",
+    "type": "Quick Service",
+    "cuisine": "American (Chicken & snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/golden-oak-outpost/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Pecos Bill Tall Tale Inn & Caf\u00e9",
+    "location": "Magic Kingdom - Frontierland",
+    "type": "Quick Service",
+    "cuisine": "Mexican/Southwestern",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/pecos-bill-tall-tale-inn-and-cafe/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Columbia Harbour House",
+    "location": "Magic Kingdom - Liberty Square",
+    "type": "Quick Service",
+    "cuisine": "American (Seafood)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/columbia-harbour-house/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Liberty Tree Tavern",
+    "location": "Magic Kingdom - Liberty Square",
+    "type": "Table Service (Family-Style)",
+    "cuisine": "American (Thanksgiving-style)",
+    "price": {
+      "tier": "$$$",
+      "adult": "Prix fixe ~$39 per adult",
+      "child": "~$21 per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/liberty-tree-tavern/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Sleepy Hollow",
+    "location": "Magic Kingdom - Liberty Square",
+    "type": "Quick Service (Snacks)",
+    "cuisine": "American (Waffles & snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/sleepy-hollow/all-day/",
+    "ddp": "Snacks / Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Casey's Corner",
+    "location": "Magic Kingdom - Main Street U.S.A.",
+    "type": "Quick Service",
+    "cuisine": "American (Hot Dogs)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/caseys-corner/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "The Crystal Palace",
+    "location": "Magic Kingdom - Main Street U.S.A.",
+    "type": "Table Service (Buffet, Character Dining)",
+    "cuisine": "American",
+    "price": {
+      "tier": "$$$",
+      "adult": "Breakfast ~$45, Dinner ~$59 per adult",
+      "child": "Breakfast ~$29, Dinner ~$38 per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/crystal-palace/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": true,
+    "characters": [
+      "Winnie the Pooh",
+      "Tigger",
+      "Piglet",
+      "Eeyore"
+    ]
+  },
+  {
+    "name": "Main Street Bakery (Starbucks)",
+    "location": "Magic Kingdom - Main Street U.S.A.",
+    "type": "Quick Service",
+    "cuisine": "Bakery & Coffee",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/main-street-bakery-starbucks/breakfast/",
+    "ddp": "1 Quick Service credit (mostly snack items)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Plaza Ice Cream Parlor",
+    "location": "Magic Kingdom - Main Street U.S.A.",
+    "type": "Quick Service (Desserts)",
+    "cuisine": "Ice Cream & Sweets",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/plaza-ice-cream-parlor/all-day/",
+    "ddp": "Snacks (eligible for snack credits)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "The Plaza Restaurant",
+    "location": "Magic Kingdom - Main Street U.S.A.",
+    "type": "Table Service",
+    "cuisine": "American (Diner-style)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/plaza-restaurant/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Tony's Town Square Restaurant",
+    "location": "Magic Kingdom - Main Street U.S.A.",
+    "type": "Table Service",
+    "cuisine": "Italian (Americanized)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/tonys-town-square-restaurant/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Cosmic Ray's Starlight Caf\u00e9",
+    "location": "Magic Kingdom - Tomorrowland",
+    "type": "Quick Service",
+    "cuisine": "American (Burgers & Sandwiches)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/cosmic-rays-starlight-cafe/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "The Lunching Pad",
+    "location": "Magic Kingdom - Tomorrowland",
+    "type": "Quick Service",
+    "cuisine": "American (Hot Dogs, Pretzels)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/lunching-pad/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Tomorrowland Terrace Restaurant",
+    "location": "Magic Kingdom - Tomorrowland",
+    "type": "Quick Service (Seasonal)",
+    "cuisine": "American",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/tomorrowland-terrace-restaurant/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "La Cantina de San Angel",
+    "location": "EPCOT - Mexico Pavilion",
+    "type": "Quick Service",
+    "cuisine": "Mexican",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/la-cantina-de-san-angel/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "La Hacienda de San Angel",
+    "location": "EPCOT - Mexico Pavilion",
+    "type": "Table Service",
+    "cuisine": "Mexican",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/la-hacienda-de-san-angel/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "San Angel Inn Restaurante",
+    "location": "EPCOT - Mexico Pavilion",
+    "type": "Table Service",
+    "cuisine": "Mexican",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/san-angel-inn/restaurante/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Akershus Royal Banquet Hall",
+    "location": "EPCOT - Norway Pavilion",
+    "type": "Table Service (Character Dining)",
+    "cuisine": "Norwegian/American",
+    "price": {
+      "tier": "$$$",
+      "adult": "$59 (breakfast) \u2013 $69 (dinner) per adult",
+      "child": "$38 (breakfast) \u2013 $46 (dinner) per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/akershus-royal-banquet-hall/lunch-dinner/",
+    "ddp": "1 TS (breakfast); 2 TS (lunch/dinner)",
+    "has_characters": true,
+    "characters": [
+      "Disney Princesses (rotating set)"
+    ]
+  },
+  {
+    "name": "Kringla Bakeri og Kafe",
+    "location": "EPCOT - Norway Pavilion",
+    "type": "Quick Service (Bakery)",
+    "cuisine": "Norwegian Bakery",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/kringla-bakeri-og-kafe/all-day/",
+    "ddp": "Snacks / Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Lotus Blossom Caf\u00e9",
+    "location": "EPCOT - China Pavilion",
+    "type": "Quick Service",
+    "cuisine": "Chinese",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/lotus-blossom-cafe/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Nine Dragons Restaurant",
+    "location": "EPCOT - China Pavilion",
+    "type": "Table Service",
+    "cuisine": "Chinese",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/nine-dragons-restaurant/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Biergarten Restaurant",
+    "location": "EPCOT - Germany Pavilion",
+    "type": "Table Service (Buffet)",
+    "cuisine": "German",
+    "price": {
+      "tier": "$$$",
+      "adult": "~$49 per adult",
+      "child": "~$27 per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/biergarten/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Sommerfest",
+    "location": "EPCOT - Germany Pavilion",
+    "type": "Quick Service",
+    "cuisine": "German (Bratwurst, snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/sommerfest/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Tutto Italia Ristorante",
+    "location": "EPCOT - Italy Pavilion",
+    "type": "Table Service",
+    "cuisine": "Italian",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/tutto-italia-ristorante/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Via Napoli Ristorante e Pizzeria",
+    "location": "EPCOT - Italy Pavilion",
+    "type": "Table Service",
+    "cuisine": "Italian (Pizzeria)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/via-napoli-pizzeria-ristorante/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Tutto Gusto Wine Cellar",
+    "location": "EPCOT - Italy Pavilion",
+    "type": "Lounge (Wine Bar)",
+    "cuisine": "Italian (Small plates)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/tutto-gusto-wine-cellar/lounge/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Katsura Grill",
+    "location": "EPCOT - Japan Pavilion",
+    "type": "Quick Service",
+    "cuisine": "Japanese",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/katsura-grill/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Shiki-Sai: Sushi Izakaya",
+    "location": "EPCOT - Japan Pavilion",
+    "type": "Table Service",
+    "cuisine": "Japanese (Sushi, Izakaya)",
+    "price": {
+      "tier": "$$$",
+      "adult": "$35\u201359.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/shiki-sai-sushi-izakaya/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Takumi-Tei",
+    "location": "EPCOT - Japan Pavilion",
+    "type": "Signature Dining",
+    "cuisine": "Japanese (Fine Dining)",
+    "price": {
+      "tier": "$$$$",
+      "adult": "$60 and above per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/takumi-tei/dinner/",
+    "ddp": "Not eligible (no Dining Plan)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Teppan Edo",
+    "location": "EPCOT - Japan Pavilion",
+    "type": "Table Service",
+    "cuisine": "Japanese (Teppanyaki)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/teppan-edo/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Regal Eagle Smokehouse: Craft Drafts & Barbecue",
+    "location": "EPCOT - American Adventure",
+    "type": "Quick Service",
+    "cuisine": "American (BBQ)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/regal-eagle-smokehouse-craft-drafts-barbecue/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Chefs de France",
+    "location": "EPCOT - France Pavilion",
+    "type": "Table Service",
+    "cuisine": "French",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/chefs-de-france/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Monsieur Paul",
+    "location": "EPCOT - France Pavilion",
+    "type": "Signature Dining",
+    "cuisine": "French (Fine Dining)",
+    "price": {
+      "tier": "$$$$",
+      "adult": "$60 and above per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/monsieur-paul/dinner/",
+    "ddp": "Not eligible (no Dining Plan)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "La Cr\u00eaperie de Paris",
+    "location": "EPCOT - France Pavilion",
+    "type": "Table Service",
+    "cuisine": "French (Cr\u00eaperie)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/la-creperie-de-paris-fixed-price/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Les Halles Boulangerie-Patisserie",
+    "location": "EPCOT - France Pavilion",
+    "type": "Quick Service (Bakery)",
+    "cuisine": "French Bakery",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/boulangerie-patisserie-les-halles/all-day/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Rose & Crown Dining Room",
+    "location": "EPCOT - United Kingdom Pavilion",
+    "type": "Table Service",
+    "cuisine": "British",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/rose-and-crown-pub-and-dining-room/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Yorkshire County Fish Shop",
+    "location": "EPCOT - United Kingdom Pavilion",
+    "type": "Quick Service",
+    "cuisine": "British (Fish & Chips)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/yorkshire-county-fish-shop/all-day/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Le Cellier Steakhouse",
+    "location": "EPCOT - Canada Pavilion",
+    "type": "Signature Dining (Table Service)",
+    "cuisine": "Steakhouse (Canadian)",
+    "price": {
+      "tier": "$$$",
+      "adult": "$35\u201359.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/le-cellier-steakhouse/dinner/",
+    "ddp": "2 Table Service credits",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Connections Caf\u00e9 & Eatery",
+    "location": "EPCOT - World Celebration",
+    "type": "Quick Service",
+    "cuisine": "American (Coffee & Fast Casual)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/connections-cafe-and-eatery/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Space 220 Restaurant",
+    "location": "EPCOT - World Discovery",
+    "type": "Table Service",
+    "cuisine": "American (Prix-Fixe, Space-themed)",
+    "price": {
+      "tier": "$$$$",
+      "adult": "Prix fixe ~$55\u2013$79 per adult",
+      "child": "~$29 per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/space-220-restaurant/lunch/",
+    "ddp": "2 Table Service credits (estimate)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Space 220 Lounge",
+    "location": "EPCOT - World Discovery",
+    "type": "Lounge",
+    "cuisine": "American (Small plates & cocktails)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/space-220-lounge/lounge/",
+    "ddp": "Not eligible (no meal credits)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Sunshine Seasons",
+    "location": "EPCOT - World Nature (The Land)",
+    "type": "Quick Service (Food Court)",
+    "cuisine": "International (Variety)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/sunshine-seasons/all-day/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Coral Reef Restaurant",
+    "location": "EPCOT - World Nature (The Seas)",
+    "type": "Table Service",
+    "cuisine": "Seafood/American",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/coral-reef-restaurant/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Garden Grill Restaurant",
+    "location": "EPCOT - World Nature (The Land)",
+    "type": "Table Service (Character Dining, Family-Style)",
+    "cuisine": "American (Farmhouse)",
+    "price": {
+      "tier": "$$$",
+      "adult": "~$55 per adult",
+      "child": "~$36 per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/garden-grill/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": true,
+    "characters": [
+      "Mickey Mouse",
+      "Pluto",
+      "Chip",
+      "Dale"
+    ]
+  },
+  {
+    "name": "50's Prime Time Caf\u00e9",
+    "location": "Disney's Hollywood Studios - Echo Lake",
+    "type": "Table Service",
+    "cuisine": "American (Homestyle)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/50s-prime-time-cafe/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Hollywood & Vine",
+    "location": "Disney's Hollywood Studios - Echo Lake",
+    "type": "Table Service (Buffet, Character Dining)",
+    "cuisine": "American",
+    "price": {
+      "tier": "$$$",
+      "adult": "Breakfast ~$42, Dinner ~$59 per adult",
+      "child": "Breakfast ~$27, Dinner ~$38 per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/hollywood-and-vine/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": true,
+    "characters": [
+      "Disney Junior (breakfast)",
+      "Minnie & friends (dinner)"
+    ]
+  },
+  {
+    "name": "Sci-Fi Dine-In Theater Restaurant",
+    "location": "Disney's Hollywood Studios - Commissary Lane",
+    "type": "Table Service",
+    "cuisine": "American (Burgers, Sandwiches)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/sci-fi-dine-in-theater/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "ABC Commissary",
+    "location": "Disney's Hollywood Studios - Commissary Lane",
+    "type": "Quick Service",
+    "cuisine": "American (Fast Casual)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/abc-commissary/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Backlot Express",
+    "location": "Disney's Hollywood Studios - Echo Lake",
+    "type": "Quick Service",
+    "cuisine": "American (Burgers, Salads)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/backlot-express/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Dockside Diner",
+    "location": "Disney's Hollywood Studios - Echo Lake",
+    "type": "Quick Service",
+    "cuisine": "American (Hot Dogs, Snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/dockside-diner/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Mama Melrose's Ristorante Italiano",
+    "location": "Disney's Hollywood Studios - Grand Avenue",
+    "type": "Table Service",
+    "cuisine": "Italian",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/mama-melroses-ristorante-italiano/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "BaseLine Tap House",
+    "location": "Disney's Hollywood Studios - Grand Avenue",
+    "type": "Lounge",
+    "cuisine": "American (Pub snacks)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/baseline-tap-house/lounge/",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "The Hollywood Brown Derby",
+    "location": "Disney's Hollywood Studios - Hollywood Boulevard",
+    "type": "Signature Dining (Table Service)",
+    "cuisine": "American (Fine Dining)",
+    "price": {
+      "tier": "$$$",
+      "adult": "$35\u201359.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/hollywood-brown-derby/lunch/",
+    "ddp": "2 Table Service credits",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "The Hollywood Brown Derby Lounge",
+    "location": "Disney's Hollywood Studios - Hollywood Boulevard",
+    "type": "Lounge",
+    "cuisine": "American (Small Plates & Cocktails)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/hollywood-brown-derby-lounge/lounge/",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Trolley Car Caf\u00e9 (Starbucks)",
+    "location": "Disney's Hollywood Studios - Hollywood Boulevard",
+    "type": "Quick Service (Coffee Shop)",
+    "cuisine": "Bakery & Coffee",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/the-trolley-car-cafe-starbucks/breakfast/",
+    "ddp": "1 Quick Service credit (snack items)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Roundup Rodeo BBQ",
+    "location": "Disney's Hollywood Studios - Toy Story Land",
+    "type": "Table Service (Family-Style)",
+    "cuisine": "American (Barbecue)",
+    "price": {
+      "tier": "$$$",
+      "adult": "Prix fixe ~$45 per adult",
+      "child": "~$25 per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/roundup-rodeo-bbq/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Woody's Lunch Box",
+    "location": "Disney's Hollywood Studios - Toy Story Land",
+    "type": "Quick Service",
+    "cuisine": "American (Sandwiches & Lunch Box snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/woodys-lunch-box/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Docking Bay 7 Food and Cargo",
+    "location": "Disney's Hollywood Studios - Star Wars: Galaxy's Edge",
+    "type": "Quick Service",
+    "cuisine": "American (Galactic-inspired)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/docking-bay-7-food-cargo/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Oga's Cantina",
+    "location": "Disney's Hollywood Studios - Star Wars: Galaxy's Edge",
+    "type": "Lounge (Bar)",
+    "cuisine": "Drinks & Light Bites (Galactic Cantina)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/ogas-cantina/lounge/",
+    "ddp": "Not eligible (no meal credits)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Ronto Roasters",
+    "location": "Disney's Hollywood Studios - Star Wars: Galaxy's Edge",
+    "type": "Quick Service",
+    "cuisine": "Galactic Street Food (Wraps)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/ronto-roasters/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Catalina Eddie's",
+    "location": "Disney's Hollywood Studios - Sunset Boulevard",
+    "type": "Quick Service",
+    "cuisine": "American (Pizza)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/catalina-eddies/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Fairfax Fare",
+    "location": "Disney's Hollywood Studios - Sunset Boulevard",
+    "type": "Quick Service",
+    "cuisine": "American (Tex-Mex/BBQ)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/fairfax-fare/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Rosie's All-American Caf\u00e9",
+    "location": "Disney's Hollywood Studios - Sunset Boulevard",
+    "type": "Quick Service",
+    "cuisine": "American (Burgers, Nuggets)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/rosies-all-american-cafe/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Tiffins",
+    "location": "Disney's Animal Kingdom - Discovery Island",
+    "type": "Signature Dining (Table Service)",
+    "cuisine": "African/Asian Fusion",
+    "price": {
+      "tier": "$$$",
+      "adult": "$35\u201359.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/tiffins/lunch-dinner/",
+    "ddp": "2 Table Service credits",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Pizzafari",
+    "location": "Disney's Animal Kingdom - Discovery Island",
+    "type": "Quick Service",
+    "cuisine": "American/Italian (Pizza)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/pizzafari/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Flame Tree Barbecue",
+    "location": "Disney's Animal Kingdom - Discovery Island",
+    "type": "Quick Service",
+    "cuisine": "American (Barbecue)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/flame-tree-barbecue/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Nomad Lounge",
+    "location": "Disney's Animal Kingdom - Discovery Island",
+    "type": "Lounge",
+    "cuisine": "International (Small Plates)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/nomad-lounge/lounge/",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Creature Comforts (Starbucks)",
+    "location": "Disney's Animal Kingdom - Discovery Island",
+    "type": "Quick Service",
+    "cuisine": "Coffee & Bakery",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/creature-comforts-starbucks/breakfast/",
+    "ddp": "1 Quick Service credit (snack items)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Satu'li Canteen",
+    "location": "Disney's Animal Kingdom - Pandora",
+    "type": "Quick Service",
+    "cuisine": "Asian/International (Bowls)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/satuli-canteen/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Tusker House Restaurant",
+    "location": "Disney's Animal Kingdom - Africa",
+    "type": "Table Service (Buffet, Character Dining)",
+    "cuisine": "African/American",
+    "price": {
+      "tier": "$$$",
+      "adult": "Breakfast ~$45, Dinner ~$59 per adult",
+      "child": "Breakfast ~$29, Dinner ~$38 per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/tusker-house-restaurant/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": true,
+    "characters": [
+      "Mickey (safari)",
+      "Donald",
+      "Daisy",
+      "Goofy"
+    ]
+  },
+  {
+    "name": "Harambe Market",
+    "location": "Disney's Animal Kingdom - Africa",
+    "type": "Quick Service",
+    "cuisine": "African (Market-style)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/harambe-market/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Kusafiri Coffee Shop & Bakery",
+    "location": "Disney's Animal Kingdom - Africa",
+    "type": "Quick Service",
+    "cuisine": "African (Pastries & Sandwiches)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/kusafiri-coffee-shop-and-bakery/breakfast/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Tamu Tamu Refreshments",
+    "location": "Disney's Animal Kingdom - Africa",
+    "type": "Quick Service (Snacks)",
+    "cuisine": "African (Desserts & Light Bites)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/tamu-tamu-refreshments/all-day/",
+    "ddp": "Snacks / Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Yak & Yeti Local Food Cafes",
+    "location": "Disney's Animal Kingdom - Asia",
+    "type": "Quick Service",
+    "cuisine": "Asian (Pan-Asian)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/yak-yeti-local-food-cafes/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Yak & Yeti Restaurant",
+    "location": "Disney's Animal Kingdom - Asia",
+    "type": "Table Service",
+    "cuisine": "Asian (Pan-Asian)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/yak-and-yeti-restaurant/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Restaurantosaurus",
+    "location": "Disney's Animal Kingdom - DinoLand U.S.A.",
+    "type": "Quick Service",
+    "cuisine": "American (Burgers & Nuggets)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/restaurantosaurus/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Chef Art Smith's Homecomin'",
+    "location": "Disney Springs - The Landing",
+    "type": "Table Service",
+    "cuisine": "Southern (American)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/homecomin/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Enzo's Hideaway Tunnel Bar",
+    "location": "Disney Springs - The Landing",
+    "type": "Table Service (Speakeasy)",
+    "cuisine": "Italian",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/enzos-hideaway-tunnel-bar/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Maria & Enzo's Ristorante",
+    "location": "Disney Springs - The Landing",
+    "type": "Table Service",
+    "cuisine": "Italian (Sicilian)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/maria-enzos-ristorante/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Jock Lindsey's Hangar Bar",
+    "location": "Disney Springs - The Landing",
+    "type": "Lounge",
+    "cuisine": "American (Small plates)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/jock-lindseys-hangar-bar/lounge/",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Morimoto Asia",
+    "location": "Disney Springs - The Landing",
+    "type": "Table Service",
+    "cuisine": "Pan-Asian",
+    "price": {
+      "tier": "$$$",
+      "adult": "$35\u201359.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/morimoto-asia/dinner/",
+    "ddp": "1 TS (lunch); 2 TS (dinner)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Morimoto Asia Street Food",
+    "location": "Disney Springs - The Landing",
+    "type": "Quick Service",
+    "cuisine": "Asian (Quick Bites)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/morimoto-asia-street-food/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Paddlefish",
+    "location": "Disney Springs - The Landing",
+    "type": "Table Service",
+    "cuisine": "Seafood",
+    "price": {
+      "tier": "$$$",
+      "adult": "$35\u201359.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/paddlefish/dinner/",
+    "ddp": "2 Table Service credits",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Paradiso 37, Taste of the Americas",
+    "location": "Disney Springs - The Landing",
+    "type": "Table Service",
+    "cuisine": "Latin American",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/paradiso-37/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Raglan Road Irish Pub & Restaurant",
+    "location": "Disney Springs - The Landing",
+    "type": "Table Service",
+    "cuisine": "Irish",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/raglan-road-irish-pub-and-restaurant/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "STK Orlando",
+    "location": "Disney Springs - The Landing",
+    "type": "Signature Dining",
+    "cuisine": "Steakhouse",
+    "price": {
+      "tier": "$$$$",
+      "adult": "$60 and above per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/stk-orlando/dinner/",
+    "ddp": "Not eligible",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "The BOATHOUSE",
+    "location": "Disney Springs - The Landing",
+    "type": "Signature Dining",
+    "cuisine": "Seafood & Steak",
+    "price": {
+      "tier": "$$$",
+      "adult": "$35\u201359.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/the-boathouse/dinner/",
+    "ddp": "2 Table Service credits",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "The Edison",
+    "location": "Disney Springs - The Landing",
+    "type": "Table Service",
+    "cuisine": "American (Gastropub)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/the-edison/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Wine Bar George",
+    "location": "Disney Springs - The Landing",
+    "type": "Table Service (Wine Bar)",
+    "cuisine": "American (Small Plates)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/wine-bar-george/lunch-dinner/",
+    "ddp": "Not eligible",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Earl of Sandwich",
+    "location": "Disney Springs - Marketplace",
+    "type": "Quick Service",
+    "cuisine": "American (Sandwiches)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/earl-of-sandwich/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Rainforest Caf\u00e9 at Disney Springs",
+    "location": "Disney Springs - Marketplace",
+    "type": "Table Service",
+    "cuisine": "American",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/rainforest-cafe-disney-springs/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "T-REX",
+    "location": "Disney Springs - Marketplace",
+    "type": "Table Service",
+    "cuisine": "American",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/t-rex/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Gideon's Bakehouse",
+    "location": "Disney Springs - The Landing",
+    "type": "Quick Service (Bakery)",
+    "cuisine": "Bakery & Desserts",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/gideons-bakehouse/all-day/",
+    "ddp": "Snacks (eligible for snack credits)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Amorette's Patisserie",
+    "location": "Disney Springs - Town Center",
+    "type": "Quick Service (Bakery)",
+    "cuisine": "French Bakery",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/amorettes-patisserie/all-day/",
+    "ddp": "Snacks (eligible for snack credits)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "D-Luxe Burger",
+    "location": "Disney Springs - Town Center",
+    "type": "Quick Service",
+    "cuisine": "American (Burgers)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/d-luxe-burger/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Blaze Fast-Fire'd Pizza",
+    "location": "Disney Springs - Town Center",
+    "type": "Quick Service",
+    "cuisine": "Italian (Pizza)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/blaze-fast-fired-pizza/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Chicken Guy!",
+    "location": "Disney Springs - Town Center",
+    "type": "Quick Service",
+    "cuisine": "American (Chicken)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/chicken-guy/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Planet Hollywood Observatory",
+    "location": "Disney Springs - West Side",
+    "type": "Table Service",
+    "cuisine": "American",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/planet-hollywood-observatory/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "The Polite Pig",
+    "location": "Disney Springs - Town Center",
+    "type": "Quick Service",
+    "cuisine": "American (Barbecue)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/the-polite-pig/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Jaleo by Jos\u00e9 Andr\u00e9s",
+    "location": "Disney Springs - West Side",
+    "type": "Table Service",
+    "cuisine": "Spanish (Tapas)",
+    "price": {
+      "tier": "$$$",
+      "adult": "$35\u201359.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/jaleo-by-jose-andres/dinner/",
+    "ddp": "2 Table Service credits (dinner)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "City Works Eatery & Pour House",
+    "location": "Disney Springs - West Side",
+    "type": "Table Service",
+    "cuisine": "American (Gastropub)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/city-works-eatery-pour-house/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "House of Blues Restaurant & Bar",
+    "location": "Disney Springs - West Side",
+    "type": "Table Service",
+    "cuisine": "Southern American",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/house-of-blues-restaurant-bar/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Splitsville Dining Room",
+    "location": "Disney Springs - West Side",
+    "type": "Table Service",
+    "cuisine": "American (Variety)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/splitsville-dining-room/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Pepe by Jos\u00e9 Andr\u00e9s",
+    "location": "Disney Springs - West Side",
+    "type": "Quick Service",
+    "cuisine": "Spanish (Sandwiches)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/pepe/lunch-dinner/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Salt & Straw",
+    "location": "Disney Springs - West Side",
+    "type": "Quick Service (Ice Cream)",
+    "cuisine": "Desserts (Ice Cream)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/salt-straw/all-day/",
+    "ddp": "Snacks (eligible for snack credits)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Everglazed Donuts & Cold Brew",
+    "location": "Disney Springs - West Side",
+    "type": "Quick Service",
+    "cuisine": "Bakery (Donuts & Coffee)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/everglazed-donuts-cold-brew/all-day/",
+    "ddp": "Snacks (eligible for snack credits)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "World Premiere Food Court",
+    "location": "Disney's All-Star Movies Resort",
+    "type": "Quick Service (Food Court)",
+    "cuisine": "American (Variety)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/world-premiere-food-court/breakfast/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Silver Screen Spirits Pool Bar",
+    "location": "Disney's All-Star Movies Resort",
+    "type": "Lounge (Pool Bar)",
+    "cuisine": "Bar (Drinks & Snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/silver-screen-spirits-pool-bar/all-day/",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Intermission Food Court",
+    "location": "Disney's All-Star Music Resort",
+    "type": "Quick Service (Food Court)",
+    "cuisine": "American (Variety)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/intermission-food-court/breakfast/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Singing Spirits Pool Bar",
+    "location": "Disney's All-Star Music Resort",
+    "type": "Lounge (Pool Bar)",
+    "cuisine": "Bar (Drinks & Snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/singing-spirits-pool-bar/all-day/",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "End Zone Food Court",
+    "location": "Disney's All-Star Sports Resort",
+    "type": "Quick Service (Food Court)",
+    "cuisine": "American (Variety)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/end-zone-food-court/breakfast/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Grandstand Spirits Pool Bar",
+    "location": "Disney's All-Star Sports Resort",
+    "type": "Lounge (Pool Bar)",
+    "cuisine": "Bar (Drinks & Snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/grandstand-spirits-pool-bar/all-day/",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Landscape of Flavors",
+    "location": "Disney's Art of Animation Resort",
+    "type": "Quick Service (Food Court)",
+    "cuisine": "American/International",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/landscape-of-flavors/breakfast/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "The Drop Off Pool Bar",
+    "location": "Disney's Art of Animation Resort",
+    "type": "Lounge (Pool Bar)",
+    "cuisine": "Bar (Drinks & Snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/drop-off-pool-bar/all-day/",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Everything POP Shopping & Dining",
+    "location": "Disney's Pop Century Resort",
+    "type": "Quick Service (Food Court)",
+    "cuisine": "American (Variety)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/everything-pop-shopping-and-dining/breakfast/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Petals Pool Bar",
+    "location": "Disney's Pop Century Resort",
+    "type": "Lounge (Pool Bar)",
+    "cuisine": "Bar (Drinks & Snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/petals-pool-bar/all-day/",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Centertown Market",
+    "location": "Disney's Caribbean Beach Resort",
+    "type": "Quick Service (Food Court)",
+    "cuisine": "American/Caribbean",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/centertown-market-all-day/all-day/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Sebastian's Bistro",
+    "location": "Disney's Caribbean Beach Resort",
+    "type": "Table Service",
+    "cuisine": "Caribbean",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/sebastians-bistro/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Banana Cabana",
+    "location": "Disney's Caribbean Beach Resort",
+    "type": "Lounge (Pool Bar)",
+    "cuisine": "Bar (Drinks & Light Bites)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/banana-cabana/all-day/",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Spyglass Grill",
+    "location": "Disney's Caribbean Beach Resort",
+    "type": "Quick Service",
+    "cuisine": "American (Casual/Caribbean)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/spyglass-grill/breakfast/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "El Mercado de Coronado",
+    "location": "Disney's Coronado Springs Resort",
+    "type": "Quick Service (Food Court)",
+    "cuisine": "American/Mexican",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/el-mercado-de-coronado/breakfast/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Maya Grill",
+    "location": "Disney's Coronado Springs Resort",
+    "type": "Table Service",
+    "cuisine": "Mexican",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/maya-grill/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Rix Sports Bar & Grill",
+    "location": "Disney's Coronado Springs Resort",
+    "type": "Table Service",
+    "cuisine": "American (Sports Bar)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/rix-sports-bar-and-grill/lounge/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Three Bridges Bar & Grill",
+    "location": "Disney's Coronado Springs Resort",
+    "type": "Table Service",
+    "cuisine": "American (Casual)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/three-bridges-bar-and-grill-at-villa-del-lago/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Barcelona Lounge",
+    "location": "Disney's Coronado Springs Resort (Gran Destino Tower)",
+    "type": "Lounge",
+    "cuisine": "Bar (Coffee AM, Cocktails PM)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/barcelona-lounge/breakfast/",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Dahlia Lounge",
+    "location": "Disney's Coronado Springs Resort (Gran Destino Tower)",
+    "type": "Lounge",
+    "cuisine": "Bar (Tapas)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/dahlia-lounge/lounge/",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Siestas Cantina",
+    "location": "Disney's Coronado Springs Resort (Dig Site Pool)",
+    "type": "Lounge (Pool Bar)",
+    "cuisine": "Bar (Drinks & Snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/siestas-cantina/all-day/",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "1900 Park Fare",
+    "location": "Disney's Grand Floridian Resort & Spa",
+    "type": "Table Service (Buffet, Character Dining)",
+    "cuisine": "American",
+    "price": {
+      "tier": "$$$",
+      "adult": "Breakfast ~$45, Dinner ~$65 per adult",
+      "child": "Breakfast ~$29, Dinner ~$45 per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/1900-park-fare/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": true,
+    "characters": [
+      "Cinderella & Prince Charming (dinner)",
+      "Mary Poppins, Alice, Mad Hatter (breakfast)"
+    ]
+  },
+  {
+    "name": "Citricos",
+    "location": "Disney's Grand Floridian Resort & Spa",
+    "type": "Signature Dining",
+    "cuisine": "American (Floridian Mediterranean)",
+    "price": {
+      "tier": "$$$",
+      "adult": "$35\u201359.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/citricos/dinner/",
+    "ddp": "2 Table Service credits",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Narcoossee's",
+    "location": "Disney's Grand Floridian Resort & Spa",
+    "type": "Signature Dining",
+    "cuisine": "Seafood/Steak",
+    "price": {
+      "tier": "$$$$",
+      "adult": "$60 and above per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/narcoossees/dinner/",
+    "ddp": "2 Table Service credits",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Grand Floridian Caf\u00e9",
+    "location": "Disney's Grand Floridian Resort & Spa",
+    "type": "Table Service",
+    "cuisine": "American",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/grand-floridian-cafe/lunch/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Gasparilla Island Grill",
+    "location": "Disney's Grand Floridian Resort & Spa",
+    "type": "Quick Service",
+    "cuisine": "American (Cafe)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/gasparilla-grill/all-day/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Enchanted Rose",
+    "location": "Disney's Grand Floridian Resort & Spa",
+    "type": "Lounge",
+    "cuisine": "Bar (Small Plates)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/enchanted-rose/lounge/",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Beaches Pool Bar & Grill",
+    "location": "Disney's Grand Floridian Resort & Spa",
+    "type": "Lounge (Pool Bar)",
+    "cuisine": "Bar (Drinks & Grill)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Courtyard Pool Bar",
+    "location": "Disney's Grand Floridian Resort & Spa",
+    "type": "Lounge (Pool Bar)",
+    "cuisine": "Bar (Drinks & Snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "'Ohana",
+    "location": "Disney's Polynesian Village Resort",
+    "type": "Table Service (Family-Style, Character breakfast)",
+    "cuisine": "Polynesian",
+    "price": {
+      "tier": "$$$",
+      "adult": "Breakfast ~$45, Dinner ~$59 per adult",
+      "child": "Breakfast ~$29, Dinner ~$38 per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/ohana/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": true,
+    "characters": [
+      "Lilo",
+      "Stitch",
+      "Mickey",
+      "Pluto (at breakfast)"
+    ]
+  },
+  {
+    "name": "Kona Caf\u00e9",
+    "location": "Disney's Polynesian Village Resort",
+    "type": "Table Service",
+    "cuisine": "Asian/Polynesian Fusion",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/kona-cafe/lunch/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Capt. Cook's",
+    "location": "Disney's Polynesian Village Resort",
+    "type": "Quick Service",
+    "cuisine": "Polynesian/American",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/capt-cooks/all-day/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Trader Sam's Grog Grotto",
+    "location": "Disney's Polynesian Village Resort",
+    "type": "Lounge (Tiki Bar)",
+    "cuisine": "Bar (Tropical drinks, small bites)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/trader-sams-grog-grotto/lounge/",
+    "ddp": "Not eligible",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Tambu Lounge",
+    "location": "Disney's Polynesian Village Resort",
+    "type": "Lounge",
+    "cuisine": "Bar (Drinks & Appetizers)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/tambu-lounge/lounge/",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Oasis Bar & Grill",
+    "location": "Disney's Polynesian Village Resort",
+    "type": "Quick Service (Pool Bar)",
+    "cuisine": "American/Polynesian (Poolside)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Pineapple Lanai",
+    "location": "Disney's Polynesian Village Resort",
+    "type": "Quick Service (Dessert Stand)",
+    "cuisine": "Dessert (Dole Whip)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "Snacks (eligible for snack credits)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "California Grill",
+    "location": "Disney's Contemporary Resort",
+    "type": "Signature Dining",
+    "cuisine": "Californian (New American)",
+    "price": {
+      "tier": "$$$$",
+      "adult": "Prix fixe ~$89 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/california-grill/dinner/",
+    "ddp": "2 Table Service credits",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Chef Mickey's",
+    "location": "Disney's Contemporary Resort",
+    "type": "Table Service (Buffet, Character Dining)",
+    "cuisine": "American",
+    "price": {
+      "tier": "$$$",
+      "adult": "Breakfast $58, Dinner $69 per adult",
+      "child": "Breakfast $37, Dinner $44 per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/chef-mickeys-breakfast/breakfast/",
+    "ddp": "1 Table Service credit",
+    "has_characters": true,
+    "characters": [
+      "Mickey",
+      "Minnie",
+      "Donald",
+      "Goofy",
+      "Pluto"
+    ]
+  },
+  {
+    "name": "Contempo Caf\u00e9",
+    "location": "Disney's Contemporary Resort",
+    "type": "Quick Service",
+    "cuisine": "American (Casual)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/contempo-cafe/breakfast/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Steakhouse 71",
+    "location": "Disney's Contemporary Resort",
+    "type": "Table Service",
+    "cuisine": "American (Steakhouse)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/steakhouse-71/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Outer Rim",
+    "location": "Disney's Contemporary Resort",
+    "type": "Lounge",
+    "cuisine": "Bar (Drinks & Snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Sand Bar",
+    "location": "Disney's Contemporary Resort",
+    "type": "Quick Service (Pool Bar)",
+    "cuisine": "American (Poolside)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Top of the World Lounge \u2013 A Villains Lair",
+    "location": "Bay Lake Tower at Disney's Contemporary Resort",
+    "type": "Lounge",
+    "cuisine": "Bar (Cocktails & Small Bites)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "",
+    "ddp": "Not eligible",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Cove Bar",
+    "location": "Bay Lake Tower at Disney's Contemporary Resort",
+    "type": "Lounge (Pool Bar)",
+    "cuisine": "Bar (Drinks & Snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Flying Fish",
+    "location": "Disney's BoardWalk (BoardWalk Inn)",
+    "type": "Signature Dining",
+    "cuisine": "Seafood",
+    "price": {
+      "tier": "$$$",
+      "adult": "$35\u201359.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/flying-fish/dinner/",
+    "ddp": "2 Table Service credits",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Trattoria al Forno",
+    "location": "Disney's BoardWalk",
+    "type": "Table Service",
+    "cuisine": "Italian",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/trattoria-al-forno/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "BoardWalk Deli",
+    "location": "Disney's BoardWalk",
+    "type": "Quick Service",
+    "cuisine": "Deli (Sandwiches)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/boardwalk-deli/breakfast/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "BoardWalk Pizza Window",
+    "location": "Disney's BoardWalk",
+    "type": "Quick Service",
+    "cuisine": "Italian (Pizza)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "AbracadaBar",
+    "location": "Disney's BoardWalk",
+    "type": "Lounge",
+    "cuisine": "Bar (Magic-Themed Cocktails)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/abracadabar/lounge/",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Belle Vue Lounge",
+    "location": "Disney's BoardWalk Inn",
+    "type": "Lounge",
+    "cuisine": "Bar (Drinks & Pastries AM)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "Not eligible",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "The Cake Bake Shop by Gwendolyn Rogers",
+    "location": "Disney's BoardWalk",
+    "type": "Table Service (Bakery/Caf\u00e9)",
+    "cuisine": "American (Bakery, Afternoon Tea)",
+    "price": {
+      "tier": "$$$",
+      "adult": "$35\u201359.99 per adult"
+    },
+    "menu_url": "",
+    "ddp": "Not eligible (new)",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Leaping Horse Libations",
+    "location": "Disney's BoardWalk (Pool)",
+    "type": "Lounge (Pool Bar)",
+    "cuisine": "Bar (Drinks & Snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Yachtsman Steakhouse",
+    "location": "Disney's Yacht Club Resort",
+    "type": "Signature Dining",
+    "cuisine": "Steakhouse",
+    "price": {
+      "tier": "$$$",
+      "adult": "$35\u201359.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/yachtsman-steakhouse/dinner/",
+    "ddp": "2 Table Service credits",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Ale & Compass Restaurant",
+    "location": "Disney's Yacht Club Resort",
+    "type": "Table Service",
+    "cuisine": "New England American",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/ale-and-compass-restaurant/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Ale & Compass Lounge",
+    "location": "Disney's Yacht Club Resort",
+    "type": "Lounge",
+    "cuisine": "Bar (Drinks & Light Fare)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Crew's Cup Lounge",
+    "location": "Disney's Yacht Club Resort",
+    "type": "Lounge",
+    "cuisine": "Bar (Drinks & Snacks)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "The Market at Ale & Compass",
+    "location": "Disney's Yacht Club Resort",
+    "type": "Quick Service",
+    "cuisine": "American (Grab & Go)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Beach Club Marketplace",
+    "location": "Disney's Beach Club Resort",
+    "type": "Quick Service (Marketplace)",
+    "cuisine": "American (Grab & Go)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Beaches & Cream Soda Shop",
+    "location": "Disney's Beach Club Resort",
+    "type": "Table Service (Diner)",
+    "cuisine": "American (Burgers & Ice Cream)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/beaches-cream-soda-shop/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Cape May Caf\u00e9",
+    "location": "Disney's Beach Club Resort",
+    "type": "Table Service (Buffet, Character Breakfast)",
+    "cuisine": "American (Seafood buffet at dinner)",
+    "price": {
+      "tier": "$$$",
+      "adult": "Breakfast ~$45, Dinner ~$59 per adult",
+      "child": "Breakfast ~$29, Dinner ~$38 per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/cape-may-cafe/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": true,
+    "characters": [
+      "Minnie, Donald, Daisy, Goofy (breakfast)"
+    ]
+  },
+  {
+    "name": "Martha's Vineyard",
+    "location": "Disney's Beach Club Resort",
+    "type": "Lounge",
+    "cuisine": "Bar (Drinks & Light Eats)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Hurricane Hanna's Waterside Bar & Grill",
+    "location": "Disney's Yacht & Beach Club Resorts",
+    "type": "Quick Service (Pool Bar)",
+    "cuisine": "American (Poolside)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Olivia's Caf\u00e9",
+    "location": "Disney's Old Key West Resort",
+    "type": "Table Service",
+    "cuisine": "American (Key West)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/olivias-cafe/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Good's Food To Go",
+    "location": "Disney's Old Key West Resort",
+    "type": "Quick Service",
+    "cuisine": "American (Quick Bites)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/goods-food-to-go/breakfast/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Gurgling Suitcase",
+    "location": "Disney's Old Key West Resort",
+    "type": "Lounge",
+    "cuisine": "Bar (Drinks & Snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Topolino's Terrace \u2013 Flavors of the Riviera",
+    "location": "Disney's Riviera Resort",
+    "type": "Table Service (Character Breakfast, Signature Dinner)",
+    "cuisine": "French/Italian",
+    "price": {
+      "tier": "$$$$",
+      "adult": "Breakfast ~$45, Dinner $89 per adult",
+      "child": "Breakfast ~$29, Dinner $41 per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/topolinos-terrace-flavors-of-the-riviera/dinner/",
+    "ddp": "1 TS (breakfast); 2 TS (dinner)",
+    "has_characters": true,
+    "characters": [
+      "Mickey, Minnie, Donald, Daisy (breakfast)"
+    ]
+  },
+  {
+    "name": "Primo Piatto",
+    "location": "Disney's Riviera Resort",
+    "type": "Quick Service",
+    "cuisine": "American/Italian",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/primo-piatto/breakfast/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Bar Riva",
+    "location": "Disney's Riviera Resort",
+    "type": "Quick Service (Pool Bar)",
+    "cuisine": "American (Poolside)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/bar-riva/all-day/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "The Artist's Palette",
+    "location": "Disney's Saratoga Springs Resort & Spa",
+    "type": "Quick Service",
+    "cuisine": "American (Market)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/the-artists-palette/breakfast/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "The Paddock Grill",
+    "location": "Disney's Saratoga Springs Resort & Spa",
+    "type": "Quick Service",
+    "cuisine": "American (Poolside)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "The Turf Club Bar and Grill",
+    "location": "Disney's Saratoga Springs Resort & Spa",
+    "type": "Table Service",
+    "cuisine": "American (Steakhouse)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/turf-club-bar-and-grill/dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Backstretch Pool Bar",
+    "location": "Disney's Saratoga Springs Resort & Spa",
+    "type": "Lounge (Pool Bar)",
+    "cuisine": "Bar (Drinks & Snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Geyser Point Bar & Grill",
+    "location": "Disney's Wilderness Lodge",
+    "type": "Quick Service (Bar & Grill)",
+    "cuisine": "American (Casual)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/geyser-point-bar-and-grill/all-day/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Roaring Fork",
+    "location": "Disney's Wilderness Lodge",
+    "type": "Quick Service",
+    "cuisine": "American (Quick Service)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/roaring-fork/breakfast/",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Whispering Canyon Caf\u00e9",
+    "location": "Disney's Wilderness Lodge",
+    "type": "Table Service",
+    "cuisine": "American (BBQ/Skillets)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/whispering-canyon-cafe/lunch-dinner/",
+    "ddp": "1 Table Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Story Book Dining at Artist Point",
+    "location": "Disney's Wilderness Lodge",
+    "type": "Signature Dining (Character Dining)",
+    "cuisine": "American (Pacific Northwest)",
+    "price": {
+      "tier": "$$$",
+      "adult": "Prix fixe $67 per adult",
+      "child": "$41 per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/artist-point/dinner/",
+    "ddp": "2 Table Service credits",
+    "has_characters": true,
+    "characters": [
+      "Snow White",
+      "Evil Queen",
+      "Dopey",
+      "Grumpy"
+    ]
+  },
+  {
+    "name": "Territory Lounge",
+    "location": "Disney's Wilderness Lodge",
+    "type": "Lounge",
+    "cuisine": "Bar (Northwest Small Plates)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Lounge credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Hoop-Dee-Doo Musical Revue",
+    "location": "The Cabins at Disney's Fort Wilderness Resort",
+    "type": "Table Service (Dinner Show)",
+    "cuisine": "American (BBQ)",
+    "price": {
+      "tier": "$$$",
+      "adult": "$66\u2013$74 per adult (varies by seating)",
+      "child": "$39\u2013$44 per child"
+    },
+    "menu_url": "https://allears.net/dining/menu/hoop-dee-doo-musical-revue/dinner/",
+    "ddp": "2 Table Service credits",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Trail's End Restaurant",
+    "location": "The Cabins at Disney's Fort Wilderness Resort",
+    "type": "Quick Service",
+    "cuisine": "American (Casual BBQ)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Crockett's Tavern",
+    "location": "The Cabins at Disney's Fort Wilderness Resort",
+    "type": "Lounge",
+    "cuisine": "Bar (Drinks & Snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "Not eligible",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Meadow Snack Bar",
+    "location": "The Cabins at Disney's Fort Wilderness Resort",
+    "type": "Quick Service (Pool Snack Bar)",
+    "cuisine": "American (Snacks)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "1 Quick Service credit",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Shula's Steak House",
+    "location": "Walt Disney World Dolphin Hotel",
+    "type": "Signature Dining",
+    "cuisine": "Steakhouse",
+    "price": {
+      "tier": "$$$$",
+      "adult": "$60 and above per adult"
+    },
+    "menu_url": "https://allears.net/dining/menu/shulas-steak-house/dinner/",
+    "ddp": "Not eligible",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Todd English's bluezoo",
+    "location": "Walt Disney World Dolphin Hotel",
+    "type": "Signature Dining",
+    "cuisine": "Seafood",
+    "price": {
+      "tier": "$$$$",
+      "adult": "$60 and above per adult"
+    },
+    "menu_url": "",
+    "ddp": "Not eligible",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Il Mulino New York Trattoria",
+    "location": "Walt Disney World Swan Hotel",
+    "type": "Table Service",
+    "cuisine": "Italian",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "",
+    "ddp": "Not eligible",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Kimonos",
+    "location": "Walt Disney World Swan Hotel",
+    "type": "Table Service",
+    "cuisine": "Japanese (Sushi)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "",
+    "ddp": "Not eligible",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Rosa Mexicano",
+    "location": "Walt Disney World Dolphin Hotel",
+    "type": "Table Service",
+    "cuisine": "Mexican",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "",
+    "ddp": "Not eligible",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "The Fountain",
+    "location": "Walt Disney World Dolphin Hotel",
+    "type": "Table Service (Casual)",
+    "cuisine": "American (Diner/Ice Cream)",
+    "price": {
+      "tier": "$",
+      "adult": "$14.99 and under per adult"
+    },
+    "menu_url": "",
+    "ddp": "Not eligible",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Cabana Bar and Beach Club",
+    "location": "Walt Disney World Dolphin Hotel",
+    "type": "Table Service (Poolside)",
+    "cuisine": "American (Casual)",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "",
+    "ddp": "Not eligible",
+    "has_characters": false,
+    "characters": []
+  },
+  {
+    "name": "Amare",
+    "location": "Walt Disney World Swan Reserve",
+    "type": "Table Service",
+    "cuisine": "Mediterranean",
+    "price": {
+      "tier": "$$",
+      "adult": "$15\u201334.99 per adult"
+    },
+    "menu_url": "",
+    "ddp": "Not eligible",
+    "has_characters": false,
+    "characters": []
+  }
+]

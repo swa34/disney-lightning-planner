@@ -1,0 +1,364 @@
+{% extends "base.html" %}
+
+{% block title %}Disney World Dining Calculator{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card disney-card">
+            <div class="card-header disney-card-header">
+                <h2 class="card-title mb-0">Disney World Dining Cost Calculator</h2>
+            </div>
+            <div class="card-body">
+                <p class="lead">Calculate the estimated cost of your dining plan based on selected restaurants.</p>
+                
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <h4>Your Party</h4>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="adults" class="form-label">Adults (age 10+):</label>
+                                <input type="number" class="form-control" id="adults" min="1" value="2">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="children" class="form-label">Children (under 10):</label>
+                                <input type="number" class="form-control" id="children" min="0" value="0">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Dining Plan:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="dining-plan" id="no-plan" value="none" checked>
+                                <label class="form-check-label" for="no-plan">No Dining Plan</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="dining-plan" id="quick-service" value="quick">
+                                <label class="form-check-label" for="quick-service">Quick Service Dining Plan</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="dining-plan" id="regular-plan" value="regular">
+                                <label class="form-check-label" for="regular-plan">Disney Dining Plan</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="dining-plan" id="deluxe-plan" value="deluxe">
+                                <label class="form-check-label" for="deluxe-plan">Deluxe Dining Plan</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <h4>Trip Details</h4>
+                        <div class="mb-3">
+                            <label for="trip-length" class="form-label">Number of Days:</label>
+                            <input type="number" class="form-control" id="trip-length" min="1" max="14" value="5">
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <strong>Note:</strong> The calculator provides estimates based on average costs. Actual prices may vary based on season and specific menu items.
+                        </div>
+                    </div>
+                </div>
+                
+                <h4>Select Restaurants for Your Trip</h4>
+                <div id="restaurant-selections">
+                    <!-- Dynamic meal selection sections will be inserted here -->
+                </div>
+                
+                <button type="button" id="calculate-btn" class="btn btn-primary disney-btn-primary mt-4">Calculate Dining Costs</button>
+                
+                <div id="results" class="mt-4" style="display: none;">
+                    <h4>Estimated Dining Costs</h4>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Without Dining Plan</h5>
+                                    <p class="mb-1">Per Person: <span id="cost-per-person">$0</span></p>
+                                    <p class="mb-1">Total: <span id="cost-total">$0</span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>With Selected Dining Plan</h5>
+                                    <p class="mb-1">Plan Cost: <span id="plan-cost">$0</span></p>
+                                    <p class="mb-1">Out of Pocket: <span id="out-of-pocket">$0</span></p>
+                                    <p class="mb-1">Total: <span id="plan-total">$0</span></p>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <div id="savings-message" class="alert alert-success">
+                                        <!-- Savings message will appear here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Load restaurant data from JSON file
+    fetch('/static/restaurants.json')
+        .then(response => response.json())
+        .then(data => {
+            // Store the data globally
+            window.restaurantData = data;
+            // Initialize the meal selections
+            initializeMealSelections();
+        })
+        .catch(error => console.error('Error loading restaurant data:', error));
+    
+    // Set up event listeners
+    document.getElementById('trip-length').addEventListener('change', initializeMealSelections);
+    document.getElementById('calculate-btn').addEventListener('click', calculateDiningCosts);
+    
+    // Initialize meal selections based on trip length
+    function initializeMealSelections() {
+        const tripLength = parseInt(document.getElementById('trip-length').value);
+        const container = document.getElementById('restaurant-selections');
+        container.innerHTML = ''; // Clear existing selections
+        
+        // If data isn't loaded yet, return
+        if (!window.restaurantData) return;
+        
+        // Create a selection for each day
+        for (let day = 1; day <= tripLength; day++) {
+            const dayContainer = document.createElement('div');
+            dayContainer.className = 'card mb-3';
+            
+            dayContainer.innerHTML = `
+                <div class="card-header">
+                    <h5 class="mb-0">Day ${day}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Breakfast:</label>
+                            <select class="form-select meal-selection" data-day="${day}" data-meal="breakfast">
+                                <option value="">None</option>
+                                <option value="quick-service">Quick Service ($15 avg)</option>
+                                <option value="table-service">Table Service ($30 avg)</option>
+                                <option value="character">Character Dining ($45 avg)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Lunch:</label>
+                            <select class="form-select meal-selection" data-day="${day}" data-meal="lunch">
+                                <option value="">None</option>
+                                <option value="quick-service">Quick Service ($18 avg)</option>
+                                <option value="table-service">Table Service ($35 avg)</option>
+                                <option value="signature">Signature Dining ($60 avg)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Dinner:</label>
+                            <select class="form-select meal-selection" data-day="${day}" data-meal="dinner">
+                                <option value="">None</option>
+                                <option value="quick-service">Quick Service ($20 avg)</option>
+                                <option value="table-service">Table Service ($45 avg)</option>
+                                <option value="character">Character Dining ($65 avg)</option>
+                                <option value="signature">Signature Dining ($85 avg)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(dayContainer);
+        }
+    }
+    
+    // Calculate dining costs based on selections
+    function calculateDiningCosts() {
+        const adults = parseInt(document.getElementById('adults').value);
+        const children = parseInt(document.getElementById('children').value);
+        const diningPlan = document.querySelector('input[name="dining-plan"]:checked').value;
+        
+        // Get all meal selections
+        const mealSelections = document.querySelectorAll('.meal-selection');
+        
+        // Initialize cost trackers
+        let totalCost = 0;
+        let adultCreditsUsed = { quick: 0, table: 0, signature: 0 };
+        let childCreditsUsed = { quick: 0, table: 0, signature: 0 };
+        
+        // Calculate costs based on selections
+        mealSelections.forEach(select => {
+            const mealType = select.value;
+            if (!mealType) return; // Skip if no meal selected
+            
+            let mealCost = 0;
+            let quickCredits = 0;
+            let tableCredits = 0;
+            let signatureCredits = 0;
+            
+            // Calculate cost based on meal type
+            switch (mealType) {
+                case 'quick-service':
+                    const meal = select.dataset.meal;
+                    mealCost = meal === 'breakfast' ? 15 : (meal === 'lunch' ? 18 : 20);
+                    quickCredits = 1;
+                    break;
+                case 'table-service':
+                    const tsMeal = select.dataset.meal;
+                    mealCost = tsMeal === 'breakfast' ? 30 : (tsMeal === 'lunch' ? 35 : 45);
+                    tableCredits = 1;
+                    break;
+                case 'character':
+                    const charMeal = select.dataset.meal;
+                    mealCost = charMeal === 'breakfast' ? 45 : 65;
+                    tableCredits = 1;
+                    break;
+                case 'signature':
+                    const sigMeal = select.dataset.meal;
+                    mealCost = sigMeal === 'lunch' ? 60 : 85;
+                    signatureCredits = 1;
+                    break;
+            }
+            
+            // Add costs for all guests
+            const adultCost = mealCost * adults;
+            const childCost = (mealCost * 0.6) * children; // Assume child cost is 60% of adult
+            totalCost += adultCost + childCost;
+            
+            // Track credits used
+            adultCreditsUsed.quick += quickCredits * adults;
+            adultCreditsUsed.table += tableCredits * adults;
+            adultCreditsUsed.signature += signatureCredits * adults;
+            
+            childCreditsUsed.quick += quickCredits * children;
+            childCreditsUsed.table += tableCredits * children;
+            childCreditsUsed.signature += signatureCredits * children;
+        });
+        
+        // Calculate dining plan costs
+        const planCost = calculatePlanCost(adults, children, diningPlan);
+        const availableCredits = getAvailableCredits(adults, children, diningPlan);
+        
+        // Calculate out of pocket costs
+        const outOfPocket = calculateOutOfPocket(adultCreditsUsed, childCreditsUsed, availableCredits);
+        
+        // Show results
+        document.getElementById('cost-per-person').textContent = `$${Math.round(totalCost / (adults + children))}`;
+        document.getElementById('cost-total').textContent = `$${Math.round(totalCost)}`;
+        document.getElementById('plan-cost').textContent = `$${Math.round(planCost)}`;
+        document.getElementById('out-of-pocket').textContent = `$${Math.round(outOfPocket)}`;
+        document.getElementById('plan-total').textContent = `$${Math.round(planCost + outOfPocket)}`;
+        
+        // Calculate savings
+        const savings = totalCost - (planCost + outOfPocket);
+        const savingsMessage = document.getElementById('savings-message');
+        if (savings > 0) {
+            savingsMessage.className = 'alert alert-success';
+            savingsMessage.textContent = `You would save approximately $${Math.round(savings)} with the selected dining plan!`;
+        } else {
+            savingsMessage.className = 'alert alert-warning';
+            savingsMessage.textContent = `The dining plan would cost approximately $${Math.round(Math.abs(savings))} more than paying out of pocket.`;
+        }
+        
+        // Show results section
+        document.getElementById('results').style.display = 'block';
+    }
+    
+    // Calculate dining plan cost
+    function calculatePlanCost(adults, children, plan) {
+        let adultCost = 0;
+        let childCost = 0;
+        
+        switch (plan) {
+            case 'none':
+                return 0;
+            case 'quick':
+                adultCost = 78.74 * adults;
+                childCost = 47.50 * children;
+                break;
+            case 'regular':
+                adultCost = 114.99 * adults;
+                childCost = 69.35 * children;
+                break;
+            case 'deluxe':
+                adultCost = 174.50 * adults;
+                childCost = 51.88 * children;
+                break;
+        }
+        
+        return adultCost + childCost;
+    }
+    
+    // Get available dining credits
+    function getAvailableCredits(adults, children, plan) {
+        const tripLength = parseInt(document.getElementById('trip-length').value);
+        let credits = {
+            adults: { quick: 0, table: 0, snacks: 0 },
+            children: { quick: 0, table: 0, snacks: 0 }
+        };
+        
+        switch (plan) {
+            case 'none':
+                break;
+            case 'quick':
+                credits.adults.quick = 2 * tripLength * adults;
+                credits.adults.snacks = 2 * tripLength * adults;
+                credits.children.quick = 2 * tripLength * children;
+                credits.children.snacks = 2 * tripLength * children;
+                break;
+            case 'regular':
+                credits.adults.quick = 1 * tripLength * adults;
+                credits.adults.table = 1 * tripLength * adults;
+                credits.adults.snacks = 2 * tripLength * adults;
+                credits.children.quick = 1 * tripLength * children;
+                credits.children.table = 1 * tripLength * children;
+                credits.children.snacks = 2 * tripLength * children;
+                break;
+            case 'deluxe':
+                credits.adults.table = 3 * tripLength * adults; // Flexible credits
+                credits.adults.snacks = 2 * tripLength * adults;
+                credits.children.table = 3 * tripLength * children; // Flexible credits
+                credits.children.snacks = 2 * tripLength * children;
+                break;
+        }
+        
+        return credits;
+    }
+    
+    // Calculate out of pocket costs
+    function calculateOutOfPocket(adultCreditsUsed, childCreditsUsed, availableCredits) {
+        let outOfPocket = 0;
+        
+        // Convert signature to table credits for credit calculation
+        const adultTableCreditsUsed = adultCreditsUsed.table + (adultCreditsUsed.signature * 2);
+        const childTableCreditsUsed = childCreditsUsed.table + (childCreditsUsed.signature * 2);
+        
+        // Calculate adult overages
+        if (adultCreditsUsed.quick > availableCredits.adults.quick) {
+            const quickOverage = adultCreditsUsed.quick - availableCredits.adults.quick;
+            outOfPocket += quickOverage * 18; // Average quick service cost
+        }
+        
+        if (adultTableCreditsUsed > availableCredits.adults.table) {
+            const tableOverage = adultTableCreditsUsed - availableCredits.adults.table;
+            outOfPocket += tableOverage * 45; // Average table service cost
+        }
+        
+        // Calculate child overages
+        if (childCreditsUsed.quick > availableCredits.children.quick) {
+            const quickOverage = childCreditsUsed.quick - availableCredits.children.quick;
+            outOfPocket += quickOverage * 11; // Average child quick service cost
+        }
+        
+        if (childTableCreditsUsed > availableCredits.children.table) {
+            const tableOverage = childTableCreditsUsed - availableCredits.children.table;
+            outOfPocket += tableOverage * 27; // Average child table service cost
+        }
+        
+        return outOfPocket;
+    }
+});
+</script>
+{% endblock %}

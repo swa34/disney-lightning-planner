@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block title %}Disney World Restaurant Finder{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card disney-card">
+            <div class="card-header disney-card-header">
+                <h2 class="card-title mb-0">Disney World Restaurant Finder</h2>
+            </div>
+            <div class="card-body">
+                <p class="lead">Find restaurants by location and view details to help plan your dining experiences.</p>
+                
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="location-filter" class="form-label">Filter by Location:</label>
+                            <select class="form-select" id="location-filter">
+                                <option value="all">All Locations</option>
+                                <option value="Magic Kingdom">Magic Kingdom</option>
+                                <option value="EPCOT">EPCOT</option>
+                                <option value="Hollywood Studios">Hollywood Studios</option>
+                                <option value="Animal Kingdom">Animal Kingdom</option>
+                                <option value="Disney Springs">Disney Springs</option>
+                                <option value="Resort">Disney Resorts</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="type-filter" class="form-label">Filter by Type:</label>
+                            <select class="form-select" id="type-filter">
+                                <option value="all">All Types</option>
+                                <option value="Table Service">Table Service</option>
+                                <option value="Quick Service">Quick Service</option>
+                                <option value="Lounge">Lounge</option>
+                                <option value="Character Dining">Character Dining</option>
+                                <option value="Signature Dining">Signature Dining</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="price-filter" class="form-label">Filter by Price:</label>
+                            <select class="form-select" id="price-filter">
+                                <option value="all">All Prices</option>
+                                <option value="$">$ (Under $15)</option>
+                                <option value="$$">$$ ($15-$35)</option>
+                                <option value="$$$">$$$ ($35-$60)</option>
+                                <option value="$$$$">$$$$ ($60+)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="restaurant-cards" class="row">
+                    <!-- Restaurant cards will be inserted here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Load restaurant data from JSON file
+    fetch('/static/restaurants.json')
+        .then(response => response.json())
+        .then(data => {
+            // Store the data globally
+            window.restaurantData = data;
+            // Initial display of all restaurants
+            filterRestaurants();
+        })
+        .catch(error => console.error('Error loading restaurant data:', error));
+    
+    // Add event listeners to filters
+    document.getElementById('location-filter').addEventListener('change', filterRestaurants);
+    document.getElementById('type-filter').addEventListener('change', filterRestaurants);
+    document.getElementById('price-filter').addEventListener('change', filterRestaurants);
+    
+    // Function to filter restaurants based on selected criteria
+    function filterRestaurants() {
+        const locationFilter = document.getElementById('location-filter').value;
+        const typeFilter = document.getElementById('type-filter').value;
+        const priceFilter = document.getElementById('price-filter').value;
+        
+        const restaurantCardsContainer = document.getElementById('restaurant-cards');
+        restaurantCardsContainer.innerHTML = ''; // Clear existing cards
+        
+        // If data isn't loaded yet, return
+        if (!window.restaurantData) return;
+        
+        // Filter the restaurants
+        const filteredRestaurants = window.restaurantData.filter(restaurant => {
+            // Check if matches location filter
+            const locationMatch = locationFilter === 'all' || 
+                (locationFilter === 'Resort' && !restaurant.location.includes('Kingdom') && 
+                    !restaurant.location.includes('EPCOT') && 
+                    !restaurant.location.includes('Hollywood') && 
+                    !restaurant.location.includes('Springs')) ||
+                restaurant.location.includes(locationFilter);
+            
+            // Check if matches type filter
+            const typeMatch = typeFilter === 'all' || 
+                (typeFilter === 'Character Dining' && restaurant.has_characters) ||
+                (restaurant.type && restaurant.type.includes(typeFilter));
+            
+            // Check if matches price filter
+            const priceMatch = priceFilter === 'all' || 
+                (restaurant.price && restaurant.price.tier === priceFilter);
+            
+            return locationMatch && typeMatch && priceMatch;
+        });
+        
+        // Display filtered restaurants
+        if (filteredRestaurants.length === 0) {
+            restaurantCardsContainer.innerHTML = '<div class="col-12 text-center"><p>No restaurants match your selected filters.</p></div>';
+        } else {
+            filteredRestaurants.forEach(restaurant => {
+                const card = createRestaurantCard(restaurant);
+                restaurantCardsContainer.appendChild(card);
+            });
+        }
+    }
+    
+    // Function to create a restaurant card element
+    function createRestaurantCard(restaurant) {
+        const col = document.createElement('div');
+        col.className = 'col-md-6 col-lg-4 mb-4';
+        
+        let priceDisplay = restaurant.price ? restaurant.price.tier : '';
+        let adultPrice = '';
+        if (restaurant.price && restaurant.price.adult) {
+            adultPrice = restaurant.price.adult;
+        }
+        
+        let characterBadge = '';
+        if (restaurant.has_characters) {
+            characterBadge = '<span class="badge bg-warning text-dark ms-2">Character Dining</span>';
+        }
+        
+        col.innerHTML = `
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="mb-0">${restaurant.name} ${characterBadge}</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Location:</strong> ${restaurant.location}</p>
+                    <p><strong>Type:</strong> ${restaurant.type}</p>
+                    <p><strong>Cuisine:</strong> ${restaurant.cuisine}</p>
+                    <p><strong>Price:</strong> ${priceDisplay} ${adultPrice}</p>
+                    ${restaurant.has_characters ? 
+                        `<p><strong>Characters:</strong> ${restaurant.characters.join(', ')}</p>` : ''}
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center">
+                    <span class="text-muted small">Disney Dining Plan: ${restaurant.ddp}</span>
+                    ${restaurant.menu_url ? 
+                        `<a href="${restaurant.menu_url}" target="_blank" class="btn btn-sm btn-primary">View Menu</a>` : ''}
+                </div>
+            </div>
+        `;
+        
+        return col;
+    }
+});
+</script>
+{% endblock %}

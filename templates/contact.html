@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Disney World Planning Tools | wdwknow.com{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card disney-card">
+            <div class="card-header disney-card-header">
+                <h2 class="card-title mb-0">Contact Us</h2>
+            </div>
+            <div class="card-body">
+                <p class="lead">Have questions about our Disney World planning tools or suggestions for improvement? We'd love to hear from you!</p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="contact-info mb-4">
+                            <h4>Email Us</h4>
+                            <p>For general inquiries, feedback, or support:</p>
+                            <p><a href="mailto:admin@wdwknow.com" class="text-decoration-none">admin@wdwknow.com</a></p>
+                        </div>
+                        
+                        <div class="response-time">
+                            <h5>Response Time</h5>
+                            <p>We do our best to respond to all inquiries within 48 hours during regular business days.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Quick Tips</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="tip-list">
+                                    <li>Include your name and email address in all correspondence</li>
+                                    <li>Be specific about any questions related to our tools</li>
+                                    <li>For Lightning Lane questions, let us know which parks you're visiting</li>
+                                    <li>For dining questions, include your party size and any special requests</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-5">
+                    <h4>Frequently Asked Questions</h4>
+                    <div class="accordion" id="contactFAQ">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Are the prices shown in your tools accurate?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#contactFAQ">
+                                <div class="accordion-body">
+                                    Our prices are estimates based on historical and seasonal data. Disney World uses dynamic pricing for Lightning Lane and dining options, so actual prices may vary based on demand, date, and Disney's current pricing structure.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Can I save my planning results?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#contactFAQ">
+                                <div class="accordion-body">
+                                    Currently, our tools don't offer saved results, but we recommend taking screenshots of your final plans. We're working on adding user accounts with saved itineraries in a future update.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Is this an official Disney World tool?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#contactFAQ">
+                                <div class="accordion-body">
+                                    No, this is an unofficial planning tool created by Disney World enthusiasts. We are not affiliated with Walt Disney World Resort or The Walt Disney Company. For official information, please visit the official Disney World website.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

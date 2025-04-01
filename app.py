@@ -241,6 +241,20 @@ def results():
         zip=zip,  # Add this line to pass the zip function
         current_step=5  # Add this line for the progress bar
     )
+@app.route('/restaurants')
+def restaurant_finder():
+    """Page for the restaurant finder tool"""
+    return render_template('restaurant_finder.html')
+
+@app.route('/dining-calculator')
+def dining_calculator():
+    """Page for the dining cost calculator tool"""
+    return render_template('restaurant_calculator.html')
+
+@app.route('/contact')
+def contact():
+    """Page for the contact information"""
+    return render_template('contact.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
