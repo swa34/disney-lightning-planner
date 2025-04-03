@@ -1,70 +1,133 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block title %}Welcome - Disney World Lightning Lane Planning Calculator{% endblock %}
+{% block title %}
+  Disney World Planning Tools - Lightning Lane Planner, Restaurant Finder & More
+{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card disney-card">
-            <div class="card-header disney-card-header">
-                <h2 class="card-title mb-0">Welcome to the Disney World Lightning Lane Planning Calculator!</h2>
-            </div>
-            <div class="card-body">
-                <p class="lead">Planning a trip to Disney World? Let us help you navigate the Lightning Lane system to make the most of your visit.</p>
-                
-                <h4 class="mt-4">About Lightning Lane Options:</h4>
-                <div class="row mt-3">
-                    <div class="col-md-4">
-                        <div class="card h-100">
-                            <div class="card-header text-center">
-                                <h5>Multi Pass</h5>
-                            </div>
-                            <div class="card-body">
-                                <p>Standard Lightning Lane service for most attractions.</p>
-                                <p>Book up to 3 attractions in advance.</p>
-                                <p>$15-39 per person, per day</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card h-100">
-                            <div class="card-header text-center">
-                                <h5>Single Pass</h5>
-                            </div>
-                            <div class="card-body">
-                                <p>Individual Lightning Lane access for the most popular attractions.</p>
-                                <p>Purchase separately from Multi Pass.</p>
-                                <p>$15-25 per attraction, per person</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card h-100">
-                            <div class="card-header text-center">
-                                <h5>Premier Pass</h5>
-                            </div>
-                            <div class="card-body">
-                                <p>Unlimited Lightning Lane access at one park.</p>
-                                <p>No scheduling or return times needed.</p>
-                                <p>$129-449 per person, per day</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="text-center mt-5">
-                    <p>Our planner will help you:</p>
-                    <ul class="list-unstyled">
-                        <li>✨ Compare costs for different Lightning Lane strategies</li>
-                        <li>✨ Optimize your budget for maximum ride efficiency</li>
-                        <li>✨ Find park-specific recommendations for your trip dates</li>
-                        <li>✨ Get expert tips for each Disney World park</li>
-                    </ul>
-                    
-                    <a href="{{ url_for('user_info') }}" class="btn btn-lg btn-primary disney-btn-primary mt-4">Start Planning</a>
-                </div>
-            </div>
+  <div class="row justify-content-center mb-5">
+    <div class="col-md-10">
+      <div class="card disney-card">
+        <div class="card-header disney-card-header">
+          <h2 class="card-title mb-0">Welcome to Disney World Planning Tools</h2>
         </div>
+        <div class="card-body">
+          <p class="lead text-center">Your one-stop destination for planning the perfect Disney World vacation!</p>
+
+          <div class="row mt-4">
+            <div class="col-lg-6 mb-4">
+              <img src="{{ url_for('static', filename='images/cinderella-castle.jpg') }}" alt="Disney Castle" class="img-fluid rounded mb-3" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x350?text=Magic+Kingdom+Castle';" />
+            </div>
+            <div class="col-lg-6 mb-4">
+              <h3>Plan Your Disney Experience</h3>
+              <p>Our comprehensive suite of planning tools takes the guesswork out of your Disney World vacation, helping you make the most of your time and budget. From Lightning Lane strategies to dining options, we've got you covered!</p>
+              <p>Each tool provides personalized recommendations based on your specific travel dates, party size, and preferences.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-12 text-center mb-4">
+      <h3>Our Planning Tools</h3>
+      <p>Select a tool to get started with your Disney World planning:</p>
+    </div>
+
+    <!-- Lightning Lane Planner Card -->
+    <div class="col-md-4 mb-4">
+      <div class="card disney-card h-100">
+        <img src="{{ url_for('static', filename='images/LL.avif') }}" class="card-img-top" alt="Lightning Lane Pass" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250?text=Lightning+Lane';" />
+        <div class="card-body">
+          <h4 class="card-title">Lightning Lane Planner</h4>
+          <p class="card-text">Optimize your ride strategy with our Lightning Lane calculator. Compare Multi Pass, Single Pass, and Premier Pass options to find the best value for your trip.</p>
+          <ul class="mb-4">
+            <li>Compare costs across all Disney parks</li>
+            <li>Get personalized ride recommendations</li>
+            <li>See park-specific tips and strategies</li>
+          </ul>
+        </div>
+        <div class="card-footer bg-white border-top-0 text-center">
+          <a href="{{ url_for('user_info') }}" class="btn btn-primary disney-btn-primary">Start Planning</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Restaurant Finder Card -->
+    <div class="col-md-4 mb-4">
+      <div class="card disney-card h-100">
+        <img src="{{ url_for('static', filename='images/dining-plan2.webp') }}" class="card-img-top" alt="Disney Dining" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250?text=Disney+Dining';" />
+        <div class="card-body">
+          <h4 class="card-title">Restaurant Finder</h4>
+          <p class="card-text">Discover the perfect dining experiences for your Disney World vacation with our comprehensive restaurant database.</p>
+          <ul class="mb-4">
+            <li>Filter by park, resort, or Disney Springs</li>
+            <li>Find character dining experiences</li>
+            <li>Sort by price range and dining type</li>
+            <li>View Disney Dining Plan eligibility</li>
+          </ul>
+        </div>
+        <div class="card-footer bg-white border-top-0 text-center">
+          <a href="{{ url_for('restaurant_finder') }}" class="btn btn-primary disney-btn-primary">Find Restaurants</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dining Calculator Card -->
+    <div class="col-md-4 mb-4">
+      <div class="card disney-card h-100">
+        <img src="{{ url_for('static', filename='images/calculator.avif') }}" class="card-img-top" alt="Dining Calculator" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250?text=Dining+Calculator';" />
+        <div class="card-body">
+          <h4 class="card-title">Dining Calculator</h4>
+          <p class="card-text">Calculate whether a Disney Dining Plan is worth it for your family based on your meal preferences and dining choices.</p>
+          <ul class="mb-4">
+            <li>Compare out-of-pocket vs. dining plan costs</li>
+            <li>Analyze different dining plan options</li>
+            <li>Estimate total food budget for your trip</li>
+            <li>Optimize dining credit usage</li>
+          </ul>
+        </div>
+        <div class="card-footer bg-white border-top-0 text-center">
+          <a href="{{ url_for('dining_calculator') }}" class="btn btn-primary disney-btn-primary">Calculate Costs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-10">
+      <div class="card disney-card">
+        <div class="card-header disney-card-header">
+          <h3 class="card-title mb-0">Disney World Planning Tips</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <h4>Lightning Lane Strategy</h4>
+              <ul class="tip-list">
+                <li>Book your first Lightning Lane selections at 7:00 AM on your eligible booking day</li>
+                <li>After using your first Lightning Lane, immediately book your next one in the app</li>
+                <li>Use Early Theme Park Entry (resort guests) to experience popular attractions before utilizing Lightning Lane later</li>
+                <li>Consider Single Passes for the most popular attractions like Rise of the Resistance and Tron</li>
+              </ul>
+            </div>
+            <div class="col-md-6 mb-4">
+              <h4>Dining Recommendations</h4>
+              <ul class="tip-list">
+                <li>Book dining reservations up to 60 days in advance for the best availability</li>
+                <li>Consider eating at off-peak hours (before 11:30 AM or after 2:00 PM for lunch)</li>
+                <li>Use mobile ordering for quick service locations to save time</li>
+                <li>Check the app for same-day cancellations when looking for hard-to-get reservations</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="alert alert-info mt-3">
+            <strong>Did you know?</strong> Our tools are regularly updated with the latest Disney World pricing and policy changes to ensure you get the most accurate planning assistance.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
