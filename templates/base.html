@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Estimate Lightning Lane costs with our calculator tool. Get personalized price estimates and planning tips based on your park selections." />
-    <title>
-      {% block title %}
-        Lightning Lane Cost Calculator & Planning Tool Walt Disney World | wdwknow.com
-      {% endblock %}
-    </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9403333793464764" crossorigin="anonymous"></script>
-    <script type="application/ld+json">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Estimate Lightning Lane costs with our calculator tool. Get personalized price estimates and planning tips based on your park selections." />
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+  <title>
+    {% block title %}
+    Lightning Lane Cost Calculator & Planning Tool Walt Disney World | wdwknow.com
+    {% endblock %}
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9403333793464764"
+    crossorigin="anonymous"></script>
+  <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "WebPage",
@@ -28,172 +33,197 @@
         }
     </script>
 
-    <style>
-        :root {
-            --disney-blue: #0078d2;
-            --disney-purple: #6f00ff;
-            --disney-pink: #ff6ec7;
-            --disney-light: #f5f5f5;
-            --disney-yellow: #ffcb05;
-            --disney-green: #00ae50;
-        }
-        
-        body {
-            font-family: 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--disney-light);
-            color: #333;
-        }
-        
-        .disney-header {
-            background: linear-gradient(135deg, var(--disney-blue), var(--disney-purple));
-            color: white;
-            padding: 20px 0;
-            margin-bottom: 30px;
-            text-align: center;
-            border-bottom: 4px solid var(--disney-pink);
-        }
-        
-        .disney-card {
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 25px;
-            border: none;
-            overflow: hidden;
-        }
-        
-        .disney-card-header {
-            background: linear-gradient(to right, var(--disney-blue), var(--disney-purple));
-            color: white;
-            font-weight: bold;
-            border-bottom: none;
-            padding: 15px 20px;
-        }
-        
-        .disney-btn-primary {
-            background-color: var(--disney-blue);
-            border-color: var(--disney-blue);
-        }
-        
-        .disney-btn-primary:hover {
-            background-color: #0056a3;
-            border-color: #0056a3;
-        }
-        
+  <style>
+    :root {
+      --disney-blue: #0078d2;
+      --disney-purple: #6f00ff;
+      --disney-pink: #ff6ec7;
+      --disney-light: #f5f5f5;
+      --disney-yellow: #ffcb05;
+      --disney-green: #00ae50;
+    }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .progress-bar {
-                width: 95%;
-            }
-            
-            .progress-step {
-                width: 25px;
-                height: 25px;
-                font-size: 0.8rem;
-            }
-            
-            .progress-label {
-                font-size: 0.7rem;
-            }
-        }
-        
-        /* Scenario and recommendation styling */
-        .scenario-card {
-            border-left: 5px solid var(--disney-blue);
-        }
-        
-        .scenario-header {
-            font-weight: bold;
-            color: var(--disney-blue);
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .tip-list {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        
-        .tip-list li {
-            position: relative;
-            padding-left: 25px;
-            margin-bottom: 10px;
-        }
-        
-        .tip-list li::before {
-            content: "✦";
-            position: absolute;
-            left: 0;
-            color: var(--disney-purple);
-        }
-        
-        /* Park recommendations styling */
-        .park-card {
-            border-left: 5px solid var(--disney-purple);
-        }
-        
-        .park-header {
-            font-weight: bold;
-            color: var(--disney-purple);
-        }
-        
-        .attraction-tier {
-            background-color: #f8f9fa;
-            border-left: 3px solid var(--disney-pink);
-            padding: 10px;
-            margin-bottom: 15px;
-        }
-    </style>
-  </head>
-  <body>
-    <header class="disney-header">
-      <div class="container">
-        <h1><a class="nav-link" href="{{ url_for('index') }}">Disney World Planning Tools</a></h1>
-        {% block progress %}
+    body {
+      font-family: 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--disney-light);
+      color: #333;
+    }
 
-        {% endblock %}
-      </div>
-    </header>
-    <nav class="navbar navbar-expand-lg navbar-dark mb-4" style="background-color: var(--disney-blue);">
-      <div class="container">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarMain">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('user_info') }}">Lightning Lane Planner</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('restaurant_finder') }}">Restaurant Finder</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('dining_calculator') }}">Dining Calculator</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    .disney-header {
+      background: linear-gradient(135deg, var(--disney-blue), var(--disney-purple));
+      color: white;
+      padding: 20px 0;
+      margin-bottom: 30px;
+      text-align: center;
+      border-bottom: 4px solid var(--disney-pink);
+    }
 
+    .disney-header h1 a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: white;
+    }
+
+    .disney-header h1 a:hover {
+      color: var(--disney-yellow);
+    }
+
+    .disney-card {
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 25px;
+      border: none;
+      overflow: hidden;
+    }
+
+    .disney-card-header {
+      background: linear-gradient(to right, var(--disney-blue), var(--disney-purple));
+      color: white;
+      font-weight: bold;
+      border-bottom: none;
+      padding: 15px 20px;
+    }
+
+    .disney-btn-primary {
+      background-color: var(--disney-blue);
+      border-color: var(--disney-blue);
+    }
+
+    .disney-btn-primary:hover {
+      background-color: #0056a3;
+      border-color: #0056a3;
+    }
+
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .progress-bar {
+        width: 95%;
+      }
+
+      .progress-step {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+      }
+
+      .progress-label {
+        font-size: 0.7rem;
+      }
+    }
+
+    /* Scenario and recommendation styling */
+    .scenario-card {
+      border-left: 5px solid var(--disney-blue);
+    }
+
+    .scenario-header {
+      font-weight: bold;
+      color: var(--disney-blue);
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    .tip-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .tip-list li {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 10px;
+    }
+
+    .tip-list li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--disney-purple);
+    }
+
+    /* Park recommendations styling */
+    .park-card {
+      border-left: 5px solid var(--disney-purple);
+    }
+
+    .park-header {
+      font-weight: bold;
+      color: var(--disney-purple);
+    }
+
+    .attraction-tier {
+      background-color: #f8f9fa;
+      border-left: 3px solid var(--disney-pink);
+      padding: 10px;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="disney-header">
     <div class="container">
-      {% block content %}
+      <h1>
+        <a class="nav-link" href="{{ url_for('index') }}">
+          <img src="{{ url_for('static', filename='images/disney-logo.png') }}" alt="Disney World Planning Tools Logo"
+            height="150" class="me-2" />
+          Disney World Planning Tools
+        </a>
+      </h1>
+      {% block progress %}
 
       {% endblock %}
     </div>
-
-    <footer class="mt-5 py-4 text-center text-muted">
-      <div class="container">
-        <p>Disney World Planning Tools &copy; 2025</p>
-        <p class="small">These are unofficial planning tool and are not affiliated with Walt Disney World Resort or the Walt Disney Company.</p>
-        <p class="small">All prices shown are estimates based on historical and seasonal data. Actual costs may vary based on date, demand, and Disney World's current pricing structure. We strive for accuracy but cannot guarantee exact pricing.</p>
+  </header>
+  <nav class="navbar navbar-expand-lg navbar-dark mb-4" style="background-color: var(--disney-blue);">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+        aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation"><span
+          class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('user_info') }}">Lightning Lane Planner</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('restaurant_finder') }}">Restaurant Finder</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('dining_calculator') }}">Dining Calculator</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
+          </li>
+        </ul>
       </div>
-    </footer>
+    </div>
+  </nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    {% block scripts %}
+  <div class="container">
+    {% block content %}
 
     {% endblock %}
-  </body>
+  </div>
+
+  <footer class="mt-5 py-4 text-center text-muted">
+    <div class="container">
+      <p>Disney World Planning Tools &copy; 2025</p>
+      <p class="small">These are unofficial planning tool and are not affiliated with Walt Disney World Resort or the
+        Walt Disney Company.</p>
+      <p class="small">All prices shown are estimates based on historical and seasonal data. Actual costs may vary based
+        on date, demand, and Disney World's current pricing structure. We strive for accuracy but cannot guarantee exact
+        pricing.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  {% block scripts %}
+
+  {% endblock %}
+</body>
+
 </html>
