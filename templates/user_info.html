@@ -105,6 +105,11 @@
                                 We're staying at a Disney Resort hotel
                             </label>
                         </div>
+                        <div class="mb-3" id="checkin-wrapper" style="display: none;">
+                            <label for="checkin_date" class="form-label">What is your Disney Resort check-in date?</label>
+                            <input type="date" class="form-control" id="checkin_date" name="checkin_date">
+                        </div>
+
                         <div class="form-check mb-3">
                             <input class="form-check-input" type="radio" name="resort_guest" id="resort_no" value="no" checked>
                             <label class="form-check-label" for="resort_no">
@@ -134,4 +139,24 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const resortYes = document.getElementById('resort_yes');
+        const resortNo = document.getElementById('resort_no');
+        const checkinWrapper = document.getElementById('checkin-wrapper');
+
+        function toggleCheckin() {
+            if (resortYes.checked) {
+                checkinWrapper.style.display = 'block';
+            } else {
+                checkinWrapper.style.display = 'none';
+            }
+        }
+
+        resortYes.addEventListener('change', toggleCheckin);
+        resortNo.addEventListener('change', toggleCheckin);
+        toggleCheckin(); // call once on page load
+    });
+</script>
 {% endblock %}
