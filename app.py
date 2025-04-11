@@ -249,6 +249,7 @@ def results():
         }
     booking_dates = planner.get_booking_dates()
     booking_date = planner.get_booking_date()
+    milestones = planner.get_trip_milestones()
 
     # Pass the zip function to the template
     return render_template(
@@ -258,8 +259,9 @@ def results():
         park_recommendations=park_recommendations,
         general_tips=planner.general_tips,
         zip=zip,
-        booking_dates=booking_dates,  # already for off-site guests
-        booking_date=booking_date,  # new line
+        booking_dates=booking_dates,
+        booking_date=booking_date,
+        milestones=milestones,
         current_step=5,
     )
 

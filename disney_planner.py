@@ -325,3 +325,21 @@ class DisneyLightningLanePlanner:
         else:
             # Off-site: only show individual dates per park
             return None
+
+    def get_trip_milestones(self):
+        """Returns key date milestones based on check-in date for resort guests."""
+        if not self.user_data.get("resort_guest") or not self.user_data.get(
+            "checkin_date"
+        ):
+            return {}
+
+        checkin = datetime.date.fromisoformat(self.user_data["checkin_date"])
+
+        return {
+            "Dining Reservations (ADR Date)": checkin - datetime.timedelta(days=60),
+            "Online Check-in": checkin - datetime.timedelta(days=60),
+            "Final Payment Due": checkin - datetime.timedelta(days=30),
+            "MagicBand Order Deadline": checkin - datetime.timedelta(days=10),
+            "Memory Maker Discount Deadline": checkin - datetime.timedelta(days=3),
+            "Reservations Available": checkin - datetime.timedelta(days=499),
+        }
