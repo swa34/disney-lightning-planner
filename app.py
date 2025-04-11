@@ -58,40 +58,59 @@ def user_info():
     return render_template("user_info.html", current_step=1)
 
 
-# In the travel_dates route, modify it to handle pre-filling the date
 @app.route("/travel_dates", methods=["GET", "POST"])
 def travel_dates():
     if request.method == "POST":
-        # Existing code...
-        pass
+        # Get planner from session
+        planner = DisneyLightningLanePlanner()
+        planner.user_data = session.get("user_data", {})
 
-    # Get user data from session
+        # Process travel dates
+        month = int(request.form.get("month"))
+        year = int(request.form.get("year"))
+        start_day = int(request.form.get("start_day"))
+        num_days = int(request.form.get("num_days"))
+
+        # Generate dates
+        travel_dates = []
+        current_date = datetime.date(year, month, start_day)
+        for _ in range(num_days):
+            travel_dates.append(current_date.isoformat())
+            current_date += datetime.timedelta(days=1)
+
+        planner.user_data["travel_dates"] = travel_dates
+
+        # Store in session
+        session["user_data"] = planner.user_data
+
+        return redirect(url_for("park_selection"))
+
+    # Get user data from session for pre-filling the form
     user_data = session.get("user_data", {})
 
-    # Set default date values
+    # Default to today's date
     today = datetime.date.today()
-    month = today.month
-    day = today.day
-    year = today.year
+    default_month = today.month
+    default_day = today.day
+    default_year = today.year
 
     # If user is a resort guest and provided a check-in date, use that
     if user_data.get("resort_guest") and user_data.get("checkin_date"):
         try:
             checkin_date = datetime.date.fromisoformat(user_data["checkin_date"])
-            month = checkin_date.month
-            day = checkin_date.day
-            year = checkin_date.year
+            default_month = checkin_date.month
+            default_day = checkin_date.day
+            default_year = checkin_date.year
         except (ValueError, TypeError):
-            # If there's any error parsing the date, fall back to today
+            # Fall back to today's date if there's an error
             pass
 
-    # Pass these values to the template
     return render_template(
         "travel_dates.html",
         current_step=2,
-        default_month=month,
-        default_day=day,
-        default_year=year,
+        default_month=default_month,
+        default_day=default_day,
+        default_year=default_year,
     )
 
 
@@ -268,6 +287,7 @@ def results():
         booking_dates=booking_dates,
         booking_date=booking_date,
         milestones=milestones,
+        current_date=datetime.date.today(),
         current_step=5,
     )
 
