@@ -327,19 +327,29 @@ class DisneyLightningLanePlanner:
             return None
 
     def get_trip_milestones(self):
-        """Returns key date milestones based on check-in date for resort guests."""
-        if not self.user_data.get("resort_guest") or not self.user_data.get(
-            "checkin_date"
-        ):
-            return {}
+        """Returns key date milestones based on check-in date for resort guests or travel dates for off-site guests."""
+        milestones = {}
 
-        checkin = datetime.date.fromisoformat(self.user_data["checkin_date"])
+        if self.user_data.get("resort_guest") and self.user_data.get("checkin_date"):
+            checkin = datetime.date.fromisoformat(self.user_data["checkin_date"])
+            milestones = {
+                "Dining Reservations (ADR)": checkin - datetime.timedelta(days=60),
+                "Online Check-In": checkin - datetime.timedelta(days=60),
+                "Final Payment Due": checkin - datetime.timedelta(days=30),
+                "MagicBand Order Deadline": checkin - datetime.timedelta(days=10),
+                "Memory Maker Discount Deadline": checkin - datetime.timedelta(days=3),
+                "Reservations Available": checkin - datetime.timedelta(days=499),
+            }
+        else:
+            travel_dates = self.user_data.get("travel_dates", [])
+            if travel_dates:
+                milestones = {
+                    "Dining Reservations (ADR)": [
+                        date - datetime.timedelta(days=60) for date in travel_dates
+                    ],
+                    "Lightning Lane Booking": [
+                        date - datetime.timedelta(days=3) for date in travel_dates
+                    ],
+                }
 
-        return {
-            "Dining Reservations (ADR Date)": checkin - datetime.timedelta(days=60),
-            "Online Check-in": checkin - datetime.timedelta(days=60),
-            "Final Payment Due": checkin - datetime.timedelta(days=30),
-            "MagicBand Order Deadline": checkin - datetime.timedelta(days=10),
-            "Memory Maker Discount Deadline": checkin - datetime.timedelta(days=3),
-            "Reservations Available": checkin - datetime.timedelta(days=499),
-        }
+        return milestones

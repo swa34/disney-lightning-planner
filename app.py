@@ -58,35 +58,41 @@ def user_info():
     return render_template("user_info.html", current_step=1)
 
 
-# For the travel_dates route - add current_step=2
+# In the travel_dates route, modify it to handle pre-filling the date
 @app.route("/travel_dates", methods=["GET", "POST"])
 def travel_dates():
     if request.method == "POST":
-        # Get planner from session
-        planner = DisneyLightningLanePlanner()
-        planner.user_data = session.get("user_data", {})
+        # Existing code...
+        pass
 
-        # Process travel dates
-        month = int(request.form.get("month"))
-        year = int(request.form.get("year"))
-        start_day = int(request.form.get("start_day"))
-        num_days = int(request.form.get("num_days"))
+    # Get user data from session
+    user_data = session.get("user_data", {})
 
-        # Generate dates
-        travel_dates = []
-        current_date = datetime.date(year, month, start_day)
-        for _ in range(num_days):
-            travel_dates.append(current_date.isoformat())
-            current_date += datetime.timedelta(days=1)
+    # Set default date values
+    today = datetime.date.today()
+    month = today.month
+    day = today.day
+    year = today.year
 
-        planner.user_data["travel_dates"] = travel_dates
+    # If user is a resort guest and provided a check-in date, use that
+    if user_data.get("resort_guest") and user_data.get("checkin_date"):
+        try:
+            checkin_date = datetime.date.fromisoformat(user_data["checkin_date"])
+            month = checkin_date.month
+            day = checkin_date.day
+            year = checkin_date.year
+        except (ValueError, TypeError):
+            # If there's any error parsing the date, fall back to today
+            pass
 
-        # Store in session
-        session["user_data"] = planner.user_data
-
-        return redirect(url_for("park_selection"))
-
-    return render_template("travel_dates.html", current_step=2)
+    # Pass these values to the template
+    return render_template(
+        "travel_dates.html",
+        current_step=2,
+        default_month=month,
+        default_day=day,
+        default_year=year,
+    )
 
 
 # For the park_selection route - add current_step=3

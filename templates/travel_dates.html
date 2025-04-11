@@ -2,170 +2,172 @@
 
 <title>
   {% block title %}
-    Lightning Lane Planner Disney World- Travel Dates
+  Lightning Lane Planner Disney World- Travel Dates
   {% endblock %}
 </title>
 
 {% block progress %}
-  <div class="progress-bar mt-4">
-    <div class="progress-step {% if current_step >= 1 %}
+<div class="progress-bar mt-4">
+  <div class="progress-step {% if current_step >= 1 %}
         completed
       {% elif current_step == 1 %}
         active
-      {% endif %}"
-      id="step1">
-      1
-      <span class="progress-label">Trip Info</span>
-    </div>
-    <div class="progress-step {% if current_step > 2 %}
+      {% endif %}" id="step1">
+    1
+    <span class="progress-label">Trip Info</span>
+  </div>
+  <div class="progress-step {% if current_step > 2 %}
         completed
       {% elif current_step == 2 %}
         active
-      {% endif %}"
-      id="step2">
-      2
-      <span class="progress-label">Travel Dates</span>
-    </div>
-    <div class="progress-step {% if current_step > 3 %}
+      {% endif %}" id="step2">
+    2
+    <span class="progress-label">Travel Dates</span>
+  </div>
+  <div class="progress-step {% if current_step > 3 %}
         completed
       {% elif current_step == 3 %}
         active
-      {% endif %}"
-      id="step3">
-      3
-      <span class="progress-label">Park Selection</span>
-    </div>
-    <div class="progress-step {% if current_step > 4 %}
+      {% endif %}" id="step3">
+    3
+    <span class="progress-label">Park Selection</span>
+  </div>
+  <div class="progress-step {% if current_step > 4 %}
         completed
       {% elif current_step == 4 %}
         active
-      {% endif %}"
-      id="step4">
-      4
-      <span class="progress-label">Attractions</span>
-    </div>
-    <div class="progress-step {% if current_step == 5 %}active{% endif %}" id="step5">
-      5
-      <span class="progress-label">Results</span>
-    </div>
+      {% endif %}" id="step4">
+    4
+    <span class="progress-label">Attractions</span>
   </div>
+  <div class="progress-step {% if current_step == 5 %}active{% endif %}" id="step5">
+    5
+    <span class="progress-label">Results</span>
+  </div>
+</div>
 {% endblock %}
 
 {% block content %}
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card disney-card">
-        <div class="card-header disney-card-header">
-          <h2 class="card-title mb-0">Step 2: Whats Your First Day In the Parks?</h2>
-        </div>
-        <div class="card-body">
-          <form method="POST" action="{{ url_for('travel_dates') }}">
-            <div class="row mb-4">
-              <div class="col-md-4">
-                <label for="month" class="form-label">Month:</label>
-                <select class="form-select" id="month" name="month" required>
-                  <option value="1">January</option>
-                  <option value="2">February</option>
-                  <option value="3">March</option>
-                  <option value="4">April</option>
-                  <option value="5">May</option>
-                  <option value="6">June</option>
-                  <option value="7">July</option>
-                  <option value="8">August</option>
-                  <option value="9">September</option>
-                  <option value="10">October</option>
-                  <option value="11">November</option>
-                  <option value="12">December</option>
-                </select>
-              </div>
-              <div class="col-md-4">
-                <label for="year" class="form-label">Year:</label>
-                <select class="form-select" id="year" name="year" required>
-                  <option value="2025" selected>2025</option>
-                  <option value="2026">2026</option>
-                </select>
-              </div>
-              <div class="col-md-4">
-                <label for="start_day" class="form-label">Start Day:</label>
-                <select class="form-select" id="start_day" name="start_day" required>
-                  {% for day in range(1, 32) %}
-                    <option value="{{ day }}">{{ day }}</option>
-                  {% endfor %}
-                </select>
-              </div>
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card disney-card">
+      <div class="card-header disney-card-header">
+        <h2 class="card-title mb-0">Step 2: Whats Your First Day In the Parks?</h2>
+      </div>
+      <div class="card-body">
+        <form method="POST" action="{{ url_for('travel_dates') }}">
+          <div class="row mb-4">
+            <div class="col-md-4">
+              <label for="month" class="form-label">Month:</label>
+              <select class="form-select" id="month" name="month" required>
+                <option value="1" {% if default_month==1 %}selected{% endif %}>January</option>
+                <option value="2" {% if default_month==2 %}selected{% endif %}>February</option>
+                <option value="3" {% if default_month==3 %}selected{% endif %}>March</option>
+                <option value="4" {% if default_month==4 %}selected{% endif %}>April</option>
+                <option value="5" {% if default_month==5 %}selected{% endif %}>May</option>
+                <option value="6" {% if default_month==6 %}selected{% endif %}>June</option>
+                <option value="7" {% if default_month==7 %}selected{% endif %}>July</option>
+                <option value="8" {% if default_month==8 %}selected{% endif %}>August</option>
+                <option value="9" {% if default_month==9 %}selected{% endif %}>September</option>
+                <option value="10" {% if default_month==10 %}selected{% endif %}>October</option>
+                <option value="11" {% if default_month==11 %}selected{% endif %}>November</option>
+                <option value="12" {% if default_month==12 %}selected{% endif %}>December</option>
+              </select>
             </div>
+            <div class="col-md-4">
+              <label for="year" class="form-label">Year:</label>
+              <select class="form-select" id="year" name="year" required>
+                <option value="2025" {% if default_year==2025 %}selected{% endif %}>2025</option>
+                <option value="2026" {% if default_year==2026 %}selected{% endif %}>2026</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="start_day" class="form-label">Start Day:</label>
+              <select class="form-select" id="start_day" name="start_day" required>
+                {% for day in range(1, 32) %}
+                <option value="{{ day }}" {% if day==default_day %}selected{% endif %}>{{ day }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
 
-            <div class="mb-4">
-              <label for="num_days" class="form-label">How many days will you be at Disney parks?</label>
-              <div class="input-group">
-                <input type="number" class="form-control" id="num_days" name="num_days" min="1" max="14" value="4" required />
-                <span class="input-group-text">days</span>
-              </div>
+          <div class="mb-4">
+            <label for="num_days" class="form-label">How many days will you be at Disney parks?</label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="num_days" name="num_days" min="1" max="14" value="4"
+                required />
+              <span class="input-group-text">days</span>
             </div>
+          </div>
 
-            <div class="alert alert-info">
-              <p>
-                <strong>Note:</strong> June is considered high season at Disney World, so Lightning Lane prices will be higher.
-              </p>
-            </div>
+          <div class="alert alert-info">
+            <p>
+              <strong>Note:</strong> June is considered high season at Disney World, so Lightning Lane prices will be
+              higher.
+            </p>
+          </div>
 
-            <div class="text-center mt-4">
-              <a href="{{ url_for('user_info') }}" class="btn btn-secondary me-2">Back</a>
-              <button type="submit" class="btn btn-primary disney-btn-primary">Next: Park Selection</button>
-            </div>
-          </form>
-        </div>
+          <div class="text-center mt-4">
+            <a href="{{ url_for('user_info') }}" class="btn btn-secondary me-2">Back</a>
+            <button type="submit" class="btn btn-primary disney-btn-primary">Next: Park Selection</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
 {% endblock %}
-
 {% block scripts %}
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const monthSelect = document.getElementById('month')
-      const daySelect = document.getElementById('start_day')
-      const yearSelect = document.getElementById('year')
-    
-      function updateDays() {
-        const month = parseInt(monthSelect.value)
-        const year = parseInt(yearSelect.value)
-    
-        let daysInMonth = 31
-    
-        if ([4, 6, 9, 11].includes(month)) {
-          daysInMonth = 30
-        } else if (month === 2) {
-          // Check for leap year
-          daysInMonth = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0 ? 29 : 28
-        }
-    
-        const currentDay = parseInt(daySelect.value)
-    
-        // Clear the current options
-        daySelect.innerHTML = ''
-    
-        // Add new options
-        for (let i = 1; i <= daysInMonth; i++) {
-          const option = document.createElement('option')
-          option.value = i
-          option.textContent = i
-    
-          // If the previously selected day is valid, select it again
-          if (i === currentDay && i <= daysInMonth) {
-            option.selected = true
-          }
-    
-          daySelect.appendChild(option)
-        }
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const monthSelect = document.getElementById('month')
+    const daySelect = document.getElementById('start_day')
+    const yearSelect = document.getElementById('year')
+    // Store the default day as a JavaScript variable outside of the template rendering
+    const defaultDay = parseInt("{{ default_day }}")
+
+    function updateDays() {
+      const month = parseInt(monthSelect.value)
+      const year = parseInt(yearSelect.value)
+
+      let daysInMonth = 31
+
+      if ([4, 6, 9, 11].includes(month)) {
+        daysInMonth = 30
+      } else if (month === 2) {
+        // Check for leap year
+        daysInMonth = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0 ? 29 : 28
       }
-    
-      // Update days when month or year changes
-      monthSelect.addEventListener('change', updateDays)
-      yearSelect.addEventListener('change', updateDays)
-    
-      // Initialize days for current selection
-      updateDays()
-    })
-  </script>
+
+      const currentDay = parseInt(daySelect.value)
+
+      // Clear the current options
+      daySelect.innerHTML = ''
+
+      // Add new options
+      for (let i = 1; i <= daysInMonth; i++) {
+        const option = document.createElement('option')
+        option.value = i
+        option.textContent = i
+
+        // If the previously selected day is valid, select it again
+        if (i === currentDay && i <= daysInMonth) {
+          option.selected = true
+        } else if (i === defaultDay && (currentDay > daysInMonth || isNaN(currentDay))) {
+          // If default day is valid when previous selection is not or on initial load
+          option.selected = true
+        }
+
+        daySelect.appendChild(option)
+      }
+    }
+
+    // Update days when month or year changes
+    monthSelect.addEventListener('change', updateDays)
+    yearSelect.addEventListener('change', updateDays)
+
+    // Initialize days for current selection
+    updateDays()
+  })
+</script>
 {% endblock %}
