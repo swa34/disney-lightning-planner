@@ -2,7 +2,8 @@ import datetime
 import json
 import os
 
-from flask import Flask, redirect, render_template, request, session, url_for
+from flask import (Flask, flash, make_response, redirect, render_template,
+                   request, session, url_for)
 
 from disney_planner import DisneyLightningLanePlanner
 
@@ -199,14 +200,18 @@ def single_pass_selection():
         "single_pass_selection.html", parks_info=parks_info, current_step=4
     )
 
-
-# For the results route - add current_step=5
 @app.route("/results")
 def results():
     # Get planner from session
     planner = DisneyLightningLanePlanner()
     planner.user_data = session.get("user_data", {})
-
+    
+    # Check if we have the necessary data
+    if "travel_dates" not in planner.user_data or "parks" not in planner.user_data:
+        # Redirect to the start of the process with an error message
+        flash("Missing travel information. Please start the planning process again.", "error")
+        return redirect(url_for("index"))
+        
     # Convert ISO format dates back to datetime objects
     travel_dates = []
     for date_str in planner.user_data["travel_dates"]:
@@ -242,8 +247,8 @@ def results():
 
         # Get single pass information
         single_passes = []
-        if planner.user_data["include_single_pass"]:
-            selected = planner.user_data["selected_single_passes"].get(park, [])
+        if planner.user_data.get("include_single_pass", False):
+            selected = planner.user_data.get("selected_single_passes", {}).get(park, [])
 
             for attraction in selected:
                 cost_range = planner.single_pass_costs[park][attraction]
@@ -257,7 +262,7 @@ def results():
 
         # Get premier pass info
         premier_info = None
-        if planner.user_data["include_premier"]:
+        if planner.user_data.get("include_premier", False):
             premier_cost = planner.premier_pass_costs[park]
             premier_info = {"min": premier_cost["min"], "max": premier_cost["max"]}
 
@@ -272,9 +277,19 @@ def results():
             "premier_info": premier_info,
             "tips": tips,
         }
-    booking_dates = planner.get_booking_dates()
-    booking_date = planner.get_booking_date()
-    milestones = planner.get_trip_milestones()
+    
+    # Safely get booking information
+    try:
+        booking_dates = planner.get_booking_dates()
+        booking_date = planner.get_booking_date()
+        milestones = planner.get_trip_milestones()
+    except Exception as e:
+        # If there's an error getting booking dates, set them to None
+        booking_dates = []
+        booking_date = None
+        milestones = {}
+        # Log the error for debugging
+        print(f"Error getting booking dates: {e}")
 
     # Pass the zip function to the template
     return render_template(
@@ -308,6 +323,33 @@ def dining_calculator():
 def contact():
     """Page for the contact information"""
     return render_template("contact.html")
+
+@app.route("/download_ics")
+def download_ics():
+    label = request.args.get("label", "Disney World Milestone")
+    date_str = request.args.get("date")
+
+    try:
+        date = datetime.date.fromisoformat(date_str)
+    except Exception:
+        return "Invalid date", 400
+
+    ics_content = f"""BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WDWKnow//Milestone Planner//EN
+BEGIN:VEVENT
+SUMMARY:{label}
+DTSTART;VALUE=DATE:{date.strftime('%Y%m%d')}
+DTEND;VALUE=DATE:{(date + datetime.timedelta(days=1)).strftime('%Y%m%d')}
+DESCRIPTION:Disney World planning milestone - time to book Lightning Lane passes!
+END:VEVENT
+END:VCALENDAR"""
+
+    response = make_response(ics_content)
+    response.headers.set("Content-Type", "text/calendar")
+    response.headers.set("Content-Disposition", f"attachment; filename=\"{label}.ics\"")
+    return response
+
 
 
 if __name__ == "__main__":

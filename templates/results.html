@@ -55,44 +55,70 @@
                     </ul>
                     <h3 class="mb-3">Trip Planning Milestones</h3>
 
-                    {% if user_data.resort_guest and milestones %}
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <ul class="list-group">
-                                {% for label, date in milestones.items() %}
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    {{ label }}:
-                                    <span class="fw-bold text-primary">{{ date.strftime('%A, %B %d, %Y') }}</span>
-                                </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-
-                    {% elif milestones %}
+                    
+                    {% set today = current_date %}
+                    <ul class="list-group">
                     {% for label, dates in milestones.items() %}
-                    {% if label != 'Lightning Lane Booking' %}
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <h5 class="mb-0">{{ label }}</h5>
-                        </div>
-                        <div class="card-body p-0">
-                            <ul class="list-group list-group-flush">
-                                {% for i in range(user_data.travel_dates|length) %}
+                        {% if dates.__class__.__name__ == 'date' %}
+                            {% set days_diff = (dates - today).days %}
+                            {% if days_diff < 0 %}
+                                {% set badge_class = "bg-danger" %}
+                                {% set icon = "bi bi-exclamation-circle-fill" %}
+                                {% set tooltip = "This milestone has passed." %}
+                            {% elif days_diff <= 7 %}
+                                {% set badge_class = "bg-warning text-dark" %}
+                                {% set icon = "bi bi-hourglass-split" %}
+                                {% set tooltip = "Coming up soon!" %}
+                            {% else %}
+                                {% set badge_class = "bg-success" %}
+                                {% set icon = "bi bi-check-circle-fill" %}
+                                {% set tooltip = "Plenty of time left!" %}
+                            {% endif %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="{{ icon }} me-2" data-bs-toggle="tooltip" title="{{ tooltip }}"></i>
+                                    {{ label }}
+                                </div>
+                                <a href="{{ url_for('download_ics', label=label, date=dates.isoformat()) }}" 
+                                   class="badge {{ badge_class }} rounded-pill text-decoration-none" 
+                                   data-bs-toggle="tooltip" title="Click to add to calendar" download>
+                                    {{ dates.strftime('%A, %B %d, %Y') }} 📅
+                                </a>
+                            </li>
+                        {% else %}
+                            {% for i in range(user_data.travel_dates|length) %}
+                                {% set date = dates[i] %}
+                                {% set visit_date = user_data.travel_dates[i] %}
+                                {% set park = user_data.parks[i] %}
+                                {% set days_diff = (date - today).days %}
+                                {% if days_diff < 0 %}
+                                    {% set badge_class = "bg-danger" %}
+                                    {% set icon = "bi bi-exclamation-circle-fill" %}
+                                    {% set tooltip = "This milestone has passed." %}
+                                {% elif days_diff <= 7 %}
+                                    {% set badge_class = "bg-warning text-dark" %}
+                                    {% set icon = "bi bi-hourglass-split" %}
+                                    {% set tooltip = "Coming up soon!" %}
+                                {% else %}
+                                    {% set badge_class = "bg-success" %}
+                                    {% set icon = "bi bi-check-circle-fill" %}
+                                    {% set tooltip = "Plenty of time left!" %}
+                                {% endif %}
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    {{ user_data.parks[i] }} on {{ user_data.travel_dates[i].strftime('%A, %B %d, %Y')
-                                    }}:
-                                    <span class="fw-bold text-primary">{{ dates[i].strftime('%A, %B %d, %Y') }}</span>
+                                    <div>
+                                        <i class="{{ icon }} me-2" data-bs-toggle="tooltip" title="{{ tooltip }}"></i>
+                                        {{ label }} for <strong>{{ park }}</strong> ({{ visit_date.strftime('%A, %B %d') }})
+                                    </div>
+                                    <a href="{{ url_for('download_ics', label=label ~ ' for ' ~ park, date=date.isoformat()) }}" 
+                                       class="badge {{ badge_class }} rounded-pill text-decoration-none" 
+                                       data-bs-toggle="tooltip" title="Click to add to calendar" download>
+                                        {{ date.strftime('%A, %B %d, %Y') }} 📅
+                                    </a>
                                 </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                    {% endif %}
+                            {% endfor %}
+                        {% endif %}
                     {% endfor %}
-                    {% endif %}
-
-
+                    </ul>
                 </div>
                 <div class="col-md-6">
                     <div class="card">
@@ -104,22 +130,34 @@
                                 {% if user_data.resort_guest and booking_date %}
                                 <p>Because you're staying at a Disney Resort, you can book Lightning Lane passes for
                                     your entire stay starting at <strong>7:00 AM ET</strong> on:</p>
-                                <p class="fs-5 text-primary fw-bold">{{ booking_date.strftime('%A, %B %d, %Y') }}</p>
+                                <p>
+                                    <a href="{{ url_for('download_ics', label='Lightning Lane Booking Day', date=booking_date.isoformat()) }}"
+                                    class="badge bg-primary rounded-pill fs-5 text-decoration-none" 
+                                    data-bs-toggle="tooltip" title="Click to add to calendar" download>
+                                        {{ booking_date.strftime('%A, %B %d, %Y') }} 📅
+                                    </a>
+                                </p>
                                 {% else %}
                                 <p>You're staying off-site, so you can book Lightning Lane passes starting <strong>3
                                         days before each park visit</strong>:</p>
                                 <ul class="list-group mt-3">
                                     {% for visit_date, park, book_date in zip(user_data.travel_dates, user_data.parks,
                                     booking_dates) %}
-                                    <li class="list-group-item">
-                                        <strong>{{ park }}</strong> on <strong>{{ visit_date.strftime('%A, %B %d')
-                                            }}</strong> → Book starting
-                                        <span class="badge bg-warning text-dark">{{ book_date.strftime('%A, %B %d')
-                                            }}</span>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <strong>{{ park }}</strong> on <strong>{{ visit_date.strftime('%A, %B %d')
+                                                }}</strong> → Book starting
+                                        </div>
+                                        <a href="{{ url_for('download_ics', label='Lightning Lane Booking for ' ~ park, date=book_date.isoformat()) }}"
+                                        class="badge bg-warning text-dark rounded-pill text-decoration-none" 
+                                        data-bs-toggle="tooltip" title="Click to add to calendar" download>
+                                            {{ book_date.strftime('%A, %B %d') }} 📅
+                                        </a>
                                     </li>
                                     {% endfor %}
                                 </ul>
                                 {% endif %}
+                                
                             </div>
                         </div>
                         <div class="card">
