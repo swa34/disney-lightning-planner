@@ -38,6 +38,16 @@
             <h2 class="card-title mb-0">Your Personalized Plan</h2>
         </div>
         <div class="card-body">
+            <!-- Download buttons at the top of the results page -->
+            <div class="text-center mb-4">
+                <a href="{{ url_for('download_pdf') }}" class="btn btn-danger me-2">
+                    <i class="bi bi-file-earmark-pdf"></i> Download PDF
+                </a>
+                <a href="{{ url_for('download_excel') }}" class="btn btn-success">
+                    <i class="bi bi-file-earmark-excel"></i> Download Excel
+                </a>
+            </div>
+
             <h3>Your Trip Summary</h3>
             <div class="row mb-4">
                 <div class="col-md-6">
@@ -419,7 +429,16 @@
     </div>
 
     <div class="text-center mb-5">
-        <a href="{{ url_for('index') }}" class="btn btn-lg btn-primary disney-btn-primary">Start New Plan</a>
+        <!-- Add download buttons at the bottom of the page as well -->
+        <div class="mb-4">
+            <a href="{{ url_for('download_pdf') }}" class="btn btn-danger me-2">
+                <i class="bi bi-file-earmark-pdf"></i> Download PDF
+            </a>
+            <a href="{{ url_for('download_excel') }}" class="btn btn-success me-2">
+                <i class="bi bi-file-earmark-excel"></i> Download Excel
+            </a>
+            <a href="{{ url_for('index') }}" class="btn btn-primary disney-btn-primary">Start New Plan</a>
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disney Lightning Lane Plan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #0078D2;
+            padding-bottom: 15px;
+        }
+        h1 {
+            color: #0078D2;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #0078D2;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #6F00FF;
+            margin-top: 25px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .highlight {
+            background-color: #f8f8f8;
+            border-left: 3px solid #0078D2;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .park-section {
+            border-left: 3px solid #6F00FF;
+            padding-left: 15px;
+            margin: 20px 0;
+        }
+        .tip-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .tip-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+        .tip-list li:before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: #6F00FF;
+        }
+        .date {
+            font-weight: bold;
+        }
+        .page-break {
+            page-break-before: always;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Disney World Lightning Lane Plan</h1>
+        <p>Generated on {{ current_date.strftime('%A, %B %d, %Y') }}</p>
+    </div>
+
+    <div class="section">
+        <h2>Trip Summary</h2>
+        <div class="highlight">
+            <p><strong>Party Size:</strong> {{ user_data.adults }} adults{% if user_data.children > 0 %}, {{ user_data.children }} children{% endif %}</p>
+            <p><strong>Resort Guest:</strong> {% if user_data.resort_guest %}Yes{% else %}No{% endif %}</p>
+            <p><strong>Park Hopper:</strong> {% if user_data.park_hopping %}Yes{% else %}No{% endif %}</p>
+        </div>
+
+        <h3>Park Visit Schedule</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Park</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for date, park in zip(user_data.travel_dates, user_data.parks) %}
+                <tr>
+                    <td>{{ date.strftime('%A, %B %d, %Y') }}</td>
+                    <td>{{ park }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>When to Book Lightning Lane Passes</h3>
+        <div class="highlight">
+            {% if user_data.resort_guest and booking_date %}
+                <p>Because you're staying at a Disney Resort, you can book Lightning Lane passes for your entire stay starting at <strong>7:00 AM ET</strong> on:</p>
+                <p class="date">{{ booking_date.strftime('%A, %B %d, %Y') }}</p>
+            {% else %}
+                <p>You're staying off-site, so you can book Lightning Lane passes starting <strong>3 days before each park visit</strong>:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Park Visit</th>
+                            <th>Book Starting</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for visit_date, park, book_date in zip(user_data.travel_dates, user_data.parks, booking_dates) %}
+                        <tr>
+                            <td><strong>{{ park }}</strong> on {{ visit_date.strftime('%A, %B %d') }}</td>
+                            <td>{{ book_date.strftime('%A, %B %d') }} at 7:00 AM ET</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+
+        <h3>Trip Planning Milestones</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Milestone</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for label, dates in milestones.items() %}
+                    {% if dates.__class__.__name__ == 'date' %}
+                        <tr>
+                            <td>{{ label }}</td>
+                            <td>{{ dates.strftime('%A, %B %d, %Y') }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="page-break"></div>
+    <div class="section">
+        <h2>Lightning Lane Options</h2>
+        
+        {% for scenario_key, scenario in scenarios.items() %}
+        <div class="park-section">
+            <h3>{{ scenario.name }}</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Park</th>
+                        <th>Cost Range</th>
+                        <th>Single Passes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for daily in scenario.daily %}
+                    <tr>
+                        <td>{{ daily.date.split(',')[0] }}</td>
+                        <td>{{ daily.park }}</td>
+                        <td>${{ daily.min }} - ${{ daily.max }}</td>
+                        <td>
+                            {% if daily.single_passes is defined and daily.single_passes|length > 0 %}
+                            {{ daily.single_passes|join(', ') }}
+                            {% else %}
+                            None
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="2">Total Cost</th>
+                        <th colspan="2">${{ scenario.total_min }} - ${{ scenario.total_max }}</th>
+                    </tr>
+                </tfoot>
+            </table>
+            
+            <div class="highlight">
+                {% if scenario_key == "scenario1" %}
+                <p>This option provides comprehensive coverage with your selected Lightning Lane Single Passes combined with Multi Pass for most attractions.</p>
+                {% elif scenario_key == "scenario2" %}
+                <p>Best for budget-conscious visitors who are willing to use standby lines for the most popular attractions or visit during low-crowd periods.</p>
+                {% elif scenario_key == "scenario3" %}
+                <p>Premier Pass is very expensive but offers maximum convenience. Consider this option for just one day of your trip at your highest-priority park, rather than for every day.</p>
+                {% elif scenario_key == "scenario4" %}
+                {% if user_data.include_single_pass %}
+                <p>This mixed approach offers the best balance of cost and experience. It prioritizes Lightning Lane passes where they save you the most time and skips them where they're less critical.</p>
+                {% else %}
+                <p>This approach focuses on Multi Pass value while avoiding the additional cost of Single Passes. You'll need to use rope drop strategies or standby lines for the premium attractions.</p>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="page-break"></div>
+    <div class="section">
+        <h2>Park-by-Park Recommendations</h2>
+        
+        {% for park, park_data in park_recommendations.items() %}
+        <div class="park-section">
+            <h3>{{ park }} - {{ park_data.date }}</h3>
+            
+            <h4>Recommended Lightning Lane Selections:</h4>
+            {% if park_data.recommended.tiers %}
+            <div class="highlight">
+                <h5>Tier 1 (Choose 1):</h5>
+                <ul>
+                    {% for attraction in park_data.recommended.tier1 %}
+                    <li>{{ attraction }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <h5>Tier 2 (Choose 2):</h5>
+                <ul>
+                    {% for attraction in park_data.recommended.tier2 %}
+                    <li>{{ attraction }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% else %}
+            <div class="highlight">
+                <h5>Recommended Attractions:</h5>
+                <ul>
+                    {% for attraction in park_data.recommended.attractions %}
+                    <li>{{ attraction }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if user_data.include_single_pass %}
+            <h4>Your Selected Single Passes:</h4>
+            {% if park_data.single_passes|length > 0 %}
+            <ul>
+                {% for pass in park_data.single_passes %}
+                <li>{{ pass.name }} (${{ pass.min }}-${{ pass.max }} per person)</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>None selected for this park.</p>
+            {% endif %}
+            {% endif %}
+            
+            <h4>Tips for {{ park }}:</h4>
+            <ul class="tip-list">
+                {% for tip in park_data.tips %}
+                <li>{{ tip }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="page-break"></div>
+    <div class="section">
+        <h2>General Lightning Lane Tips</h2>
+        
+        <h3>Single Pass Strategy:</h3>
+        <ul class="tip-list">
+            <li>Book as early in the day as possible for popular attractions</li>
+            <li>Purchase early as these often sell out in advance</li>
+            <li>Remember you can purchase up to 2 Single Passes per day across all parks</li>
+        </ul>
+        
+        <h3>Multi Pass Strategy:</h3>
+        <ul class="tip-list">
+            <li>Pre-book your 3 attractions before your trip</li>
+            <li>Use tier rules: 1 Tier 1 + 2 Tier 2 attractions (except Animal Kingdom)</li>
+            <li>After using your first Lightning Lane, immediately book your next one</li>
+            <li>You can modify existing bookings without canceling them</li>
+        </ul>
+        
+        <h3>Additional Tips:</h3>
+        <ul class="tip-list">
+            {% for tip in general_tips %}
+            <li>{{ tip }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="footer">
+        <p>Note: This is an unofficial planning tool and is not affiliated with Walt Disney World Resort or the Walt Disney Company.</p>
+        <p>All prices shown are estimates based on historical and seasonal data. Actual costs may vary.</p>
+    </div>
+</body>
+</html>
