@@ -163,7 +163,7 @@ def park_selection():
     return render_template("park_selection.html", dates=dates, current_step=3)
 
 
-# For the single_pass_selection route - add current_step=4
+# For the single_pass_selection route - add current_step=4s
 @app.route("/single_pass_selection", methods=["GET", "POST"])
 def single_pass_selection():
     # Get planner from session
@@ -186,25 +186,45 @@ def single_pass_selection():
     for i, park in enumerate(planner.user_data["parks"]):
         date = datetime.date.fromisoformat(planner.user_data["travel_dates"][i])
 
+        # Get current wait times from API
+        wait_times = planner.get_wait_times(park)
+
         attractions = []
         for attraction, cost in planner.single_pass_costs[park].items():
-            attractions.append(
-                {"name": attraction, "min_cost": cost["min"], "max_cost": cost["max"]}
-            )
+            # Match attraction name to wait times (simple matching logic)
+            wait_time = "Unknown"
+            is_open = False
+            
+            # Try exact match
+            if attraction in wait_times:
+                wait_time = wait_times[attraction].get("wait_time", "Unknown")
+                is_open = wait_times[attraction].get("is_open", False)
+            else:
+                # Try to find a close match if exact match isn't found
+                for wait_time_name, wait_data in wait_times.items():
+                    if attraction in wait_time_name or wait_time_name in attraction:
+                        wait_time = wait_data.get("wait_time", "Unknown")
+                        is_open = wait_data.get("is_open", False)
+                        break
 
-        parks_info.append(
-            {
-                "index": i,
-                "name": park,
-                "date": date.strftime("%A, %B %d, %Y"),
-                "attractions": attractions,
-            }
-        )
+            attractions.append({
+                "name": attraction,
+                "min_cost": cost["min"],
+                "max_cost": cost["max"],
+                "wait_time": wait_time,
+                "is_open": is_open,
+            })
 
-    return render_template(
-        "single_pass_selection.html", parks_info=parks_info, current_step=4
-    )
+        parks_info.append({
+            "index": i,
+            "name": park,
+            "date": date.strftime("%A, %B %d, %Y"),
+            "attractions": attractions,
+        })
 
+    return render_template("single_pass_selection.html", parks_info=parks_info, current_step=4)
+
+# Update the results route to fix wait_time handling
 @app.route("/results")
 def results():
     # Get planner from session
@@ -230,6 +250,11 @@ def results():
     for scenario_key, scenario in scenarios.items():
         for i, daily in enumerate(scenario["daily"]):
             scenario["daily"][i]["date"] = daily["date"].strftime("%A, %B %d, %Y")
+
+    # Fetch current wait times for all parks
+    park_wait_times = {}
+    for park in planner.user_data["parks"]:
+        park_wait_times[park] = planner.get_wait_times(park)
 
     # Get park recommendations and tips
     park_recommendations = {}
@@ -257,13 +282,30 @@ def results():
 
             for attraction in selected:
                 cost_range = planner.single_pass_costs[park][attraction]
-                single_passes.append(
-                    {
-                        "name": attraction,
-                        "min": cost_range["min"],
-                        "max": cost_range["max"],
-                    }
-                )
+                
+                # Get wait time info if available
+                wait_time = "Unknown"
+                is_open = False
+                
+                # Try exact match
+                if attraction in park_wait_times[park]:
+                    wait_time = park_wait_times[park][attraction].get("wait_time", "Unknown")
+                    is_open = park_wait_times[park][attraction].get("is_open", False)
+                else:
+                    # Try to find a close match if exact match isn't found
+                    for wait_time_name, wait_data in park_wait_times[park].items():
+                        if attraction in wait_time_name or wait_time_name in attraction:
+                            wait_time = wait_data.get("wait_time", "Unknown")
+                            is_open = wait_data.get("is_open", False)
+                            break
+                
+                single_passes.append({
+                    "name": attraction,
+                    "min": cost_range["min"],
+                    "max": cost_range["max"],
+                    "wait_time": wait_time,
+                    "is_open": is_open,
+                })
 
         # Get premier pass info
         premier_info = None
@@ -281,6 +323,7 @@ def results():
             "single_passes": single_passes,
             "premier_info": premier_info,
             "tips": tips,
+            "wait_times": park_wait_times[park],
         }
     
     # Safely get booking information
@@ -315,12 +358,16 @@ def results():
     
     session['milestones'] = serialized_milestones
 
+    # Add attribution for Queue-Times.com
+    queue_times_attribution = "Wait time data powered by Queue-Times.com"
+
     # Pass the zip function to the template
     return render_template(
         "results.html",
         user_data=planner.user_data,
         scenarios=scenarios,
         park_recommendations=park_recommendations,
+        park_wait_times=park_wait_times,
         general_tips=planner.general_tips,
         zip=zip,
         booking_dates=booking_dates,
@@ -328,6 +375,7 @@ def results():
         milestones=milestones,
         current_date=datetime.date.today(),
         current_step=5,
+        queue_times_attribution=queue_times_attribution,
     )
 
 
@@ -407,7 +455,7 @@ def parse_date(date_str):
     print(f"Could not parse date: {date_str}")
     return None
 
-
+# Complete download_pdf function with fixed booking dates for off-site guests
 @app.route("/download_pdf")
 def download_pdf():
     """Generate and download a PDF of the plan results using ReportLab"""
@@ -425,9 +473,12 @@ def download_pdf():
     # Convert dates back from various string formats to datetime objects
     booking_dates = []
     for date_str in booking_dates_str:
-        booking_dates.append(parse_date(date_str))
+        if date_str:  # Only process non-None values
+            booking_dates.append(parse_date(date_str))
+        else:
+            booking_dates.append(None)
     
-    booking_date = parse_date(booking_date_str)
+    booking_date = parse_date(booking_date_str) if booking_date_str else None
     
     # Convert milestones dates
     milestones = {}
@@ -435,7 +486,7 @@ def download_pdf():
         if isinstance(value, str):
             milestones[key] = parse_date(value)
         elif isinstance(value, list):
-            milestones[key] = [parse_date(date_str) for date_str in value]
+            milestones[key] = [parse_date(date_str) if date_str else None for date_str in value]
         else:
             milestones[key] = value
     
@@ -562,20 +613,58 @@ def download_pdf():
     if user_data.get('resort_guest', False) and booking_date and hasattr(booking_date, 'strftime'):
         elements.append(Paragraph("As a Disney Resort guest, you can book Lightning Lane passes for your entire stay starting at 7:00 AM ET on:", styles["Normal"]))
         elements.append(Paragraph(booking_date.strftime('%A, %B %d, %Y'), styles["Normal"]))
-    else:
+    elif user_data.get('travel_dates') and len(user_data.get('travel_dates', [])) > 0:
         elements.append(Paragraph("As an off-site guest, you can book Lightning Lane passes starting 3 days before each park visit:", styles["Normal"]))
         
         booking_data = [["Visit Date", "Park", "Book On"]]
-        for visit_date, park, book_date in zip(user_data.get('travel_dates', []), user_data.get('parks', []), booking_dates):
-            if visit_date and book_date and hasattr(visit_date, 'strftime') and hasattr(book_date, 'strftime'):
+        
+        # Check if we have valid booking dates
+        has_valid_booking_data = False
+        for i, (visit_date, park) in enumerate(zip(user_data.get('travel_dates', []), user_data.get('parks', []))):
+            if hasattr(visit_date, 'strftime'):
+                book_date = None
+                # Try to get the booking date from the list
+                if i < len(booking_dates) and booking_dates[i] and hasattr(booking_dates[i], 'strftime'):
+                    book_date = booking_dates[i]
+                else:
+                    # Fall back to calculating it
+                    book_date = visit_date - datetime.timedelta(days=3)
+                
                 booking_data.append([
                     visit_date.strftime('%A, %B %d'), 
                     park, 
                     book_date.strftime('%A, %B %d')
                 ])
+                has_valid_booking_data = True
         
-        if len(booking_data) > 1:  # Only add table if there are rows other than header
+        if has_valid_booking_data:  # Only add table if there are valid rows
             t = Table(booking_data, colWidths=[2*inch, 2*inch, 2*inch])
+            t.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#0078D2')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+                ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, -1), 10),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
+                ('GRID', (0, 0), (-1, -1), 1, colors.lightgrey),
+            ]))
+            elements.append(t)
+    
+    # Trip Planning Milestones
+    if milestones:
+        elements.append(Spacer(1, 0.3*inch))
+        elements.append(Paragraph("Trip Planning Milestones", styles["DisneyHeading3"]))
+        
+        milestone_data = [["Milestone", "Date"]]
+        
+        # Process milestones with single dates
+        for label, date_value in milestones.items():
+            if isinstance(date_value, (datetime.date, datetime.datetime)) and hasattr(date_value, 'strftime'):
+                milestone_data.append([label, date_value.strftime('%A, %B %d, %Y')])
+            
+        # Add the table if there are any milestone dates
+        if len(milestone_data) > 1:
+            t = Table(milestone_data, colWidths=[3*inch, 3*inch])
             t.setStyle(TableStyle([
                 ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#0078D2')),
                 ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
@@ -662,12 +751,13 @@ def download_pdf():
     # Park Recommendations
     for park, park_data in park_recommendations.items():
         # Park header with date
-        elements.append(Paragraph(f"{park} - {park_data['date']}", styles["DisneyHeading3"]))
+        park_date = park_data.get('date', '')
+        elements.append(Paragraph(f"{park} - {park_date}", styles["DisneyHeading3"]))
         
         # Recommended Lightning Lane Selections
         elements.append(Paragraph("Recommended Lightning Lane Selections:", styles["Normal"]))
         
-        if park_data['recommended'].get('tiers', False):
+        if park_data.get('recommended', {}).get('tiers', False):
             # Tier 1
             elements.append(Paragraph("Tier 1 (Choose 1):", ParagraphStyle(
                 "BulletHeading", 
@@ -677,7 +767,7 @@ def download_pdf():
                 spaceBefore=6
             )))
             
-            for attraction in park_data['recommended']['tier1']:
+            for attraction in park_data.get('recommended', {}).get('tier1', []):
                 elements.append(Paragraph(f"• {attraction}", ParagraphStyle(
                     "Bullet", 
                     parent=styles["Normal"],
@@ -693,7 +783,7 @@ def download_pdf():
                 spaceBefore=6
             )))
             
-            for attraction in park_data['recommended']['tier2']:
+            for attraction in park_data.get('recommended', {}).get('tier2', []):
                 elements.append(Paragraph(f"• {attraction}", ParagraphStyle(
                     "Bullet", 
                     parent=styles["Normal"],
@@ -709,7 +799,7 @@ def download_pdf():
                 spaceBefore=6
             )))
             
-            for attraction in park_data['recommended']['attractions']:
+            for attraction in park_data.get('recommended', {}).get('attractions', []):
                 elements.append(Paragraph(f"• {attraction}", ParagraphStyle(
                     "Bullet", 
                     parent=styles["Normal"],
@@ -725,8 +815,8 @@ def download_pdf():
                 spaceBefore=10
             )))
             
-            for pass_info in park_data['single_passes']:
-                elements.append(Paragraph(f"• {pass_info['name']} (${pass_info['min']}-${pass_info['max']} per person)", ParagraphStyle(
+            for pass_info in park_data.get('single_passes', []):
+                elements.append(Paragraph(f"• {pass_info.get('name', '')} (${pass_info.get('min', 0)}-${pass_info.get('max', 0)} per person)", ParagraphStyle(
                     "Bullet", 
                     parent=styles["Normal"],
                     leftIndent=20
@@ -740,7 +830,7 @@ def download_pdf():
             spaceBefore=10
         )))
         
-        for tip in park_data['tips']:
+        for tip in park_data.get('tips', []):
             elements.append(Paragraph(f"• {tip}", ParagraphStyle(
                 "Bullet", 
                 parent=styles["Normal"],
@@ -823,6 +913,7 @@ def download_pdf():
     
     return response
 
+# Complete download_excel function with fixed booking dates for off-site guests
 @app.route("/download_excel")
 def download_excel():
     """Generate and download an Excel file of the plan results"""
@@ -840,9 +931,12 @@ def download_excel():
     # Convert dates back from various string formats to datetime objects
     booking_dates = []
     for date_str in booking_dates_str:
-        booking_dates.append(parse_date(date_str))
+        if date_str:  # Only process non-None values
+            booking_dates.append(parse_date(date_str))
+        else:
+            booking_dates.append(None)
     
-    booking_date = parse_date(booking_date_str)
+    booking_date = parse_date(booking_date_str) if booking_date_str else None
     
     # Convert milestones dates
     milestones = {}
@@ -850,7 +944,7 @@ def download_excel():
         if isinstance(value, str):
             milestones[key] = parse_date(value)
         elif isinstance(value, list):
-            milestones[key] = [parse_date(date_str) for date_str in value]
+            milestones[key] = [parse_date(date_str) if date_str else None for date_str in value]
         else:
             milestones[key] = value
     
@@ -946,7 +1040,7 @@ def download_excel():
         ws[f'A{row}'] = booking_date
         ws[f'B{row}'] = booking_date.strftime('%A')
         row += 2
-    else:
+    elif user_data.get('travel_dates') and len(user_data.get('travel_dates', [])) > 0:
         ws[f'A{row}'] = "As an off-site guest, you can book Lightning Lane passes starting 3 days before each park visit:"
         ws.merge_cells(f'A{row}:E{row}')
         row += 1
@@ -960,13 +1054,44 @@ def download_excel():
             cell.fill = header_fill
         
         row += 1
-        if "travel_dates" in user_data and booking_dates:
-            for visit_date, park, book_date in zip(user_data.get('travel_dates', []), user_data.get('parks', []), booking_dates):
-                if visit_date and book_date and hasattr(visit_date, 'strftime') and hasattr(book_date, 'strftime'):
-                    ws[f'A{row}'] = visit_date
-                    ws[f'B{row}'] = park
-                    ws[f'C{row}'] = book_date
-                    row += 1
+        for i, (visit_date, park) in enumerate(zip(user_data.get('travel_dates', []), user_data.get('parks', []))):
+            if hasattr(visit_date, 'strftime'):
+                book_date = None
+                # Try to get the booking date from the list
+                if i < len(booking_dates) and booking_dates[i] and hasattr(booking_dates[i], 'strftime'):
+                    book_date = booking_dates[i]
+                else:
+                    # Fall back to calculating it
+                    book_date = visit_date - datetime.timedelta(days=3)
+                
+                ws[f'A{row}'] = visit_date
+                ws[f'B{row}'] = park
+                ws[f'C{row}'] = book_date
+                row += 1
+    
+    # Add milestones section
+    if milestones:
+        row += 2
+        ws[f'A{row}'] = "Trip Planning Milestones"
+        ws[f'A{row}'].font = subheader_font
+        ws.merge_cells(f'A{row}:C{row}')
+        row += 1
+        
+        # Header row
+        ws[f'A{row}'] = "Milestone"
+        ws[f'B{row}'] = "Date"
+        
+        for cell in ws[f'A{row}:B{row}'][0]:
+            cell.font = header_font
+            cell.fill = header_fill
+        
+        row += 1
+        # Process milestones with single dates
+        for label, date_value in milestones.items():
+            if isinstance(date_value, (datetime.date, datetime.datetime)) and hasattr(date_value, 'strftime'):
+                ws[f'A{row}'] = label
+                ws[f'B{row}'] = date_value
+                row += 1
     
     # Adjust column widths
     for column in ws.columns:
@@ -1055,7 +1180,7 @@ def download_excel():
     
     row = 3
     for park, park_data in park_recommendations.items():
-        ws[f'A{row}'] = f"{park} - {park_data['date']}"
+        ws[f'A{row}'] = f"{park} - {park_data.get('date', '')}"
         ws[f'A{row}'].font = subheader_font
         ws.merge_cells(f'A{row}:E{row}')
         row += 1
@@ -1065,12 +1190,12 @@ def download_excel():
         ws.merge_cells(f'A{row}:E{row}')
         row += 1
         
-        if park_data['recommended'].get('tiers', False):
+        if park_data.get('recommended', {}).get('tiers', False):
             ws[f'A{row}'] = "Tier 1 (Choose 1):"
             ws.merge_cells(f'A{row}:B{row}')
             row += 1
             
-            for attraction in park_data['recommended']['tier1']:
+            for attraction in park_data.get('recommended', {}).get('tier1', []):
                 ws[f'A{row}'] = "• " + attraction
                 ws.merge_cells(f'A{row}:B{row}')
                 row += 1
@@ -1080,7 +1205,7 @@ def download_excel():
             ws.merge_cells(f'A{row}:B{row}')
             row += 1
             
-            for attraction in park_data['recommended']['tier2']:
+            for attraction in park_data.get('recommended', {}).get('tier2', []):
                 ws[f'A{row}'] = "• " + attraction
                 ws.merge_cells(f'A{row}:B{row}')
                 row += 1
@@ -1089,7 +1214,7 @@ def download_excel():
             ws.merge_cells(f'A{row}:B{row}')
             row += 1
             
-            for attraction in park_data['recommended']['attractions']:
+            for attraction in park_data.get('recommended', {}).get('attractions', []):
                 ws[f'A{row}'] = "• " + attraction
                 ws.merge_cells(f'A{row}:B{row}')
                 row += 1
@@ -1102,8 +1227,8 @@ def download_excel():
             ws.merge_cells(f'A{row}:E{row}')
             row += 1
             
-            for pass_info in park_data['single_passes']:
-                ws[f'A{row}'] = f"• {pass_info['name']} (${pass_info['min']}-${pass_info['max']} per person)"
+            for pass_info in park_data.get('single_passes', []):
+                ws[f'A{row}'] = f"• {pass_info.get('name', '')} (${pass_info.get('min', 0)}-${pass_info.get('max', 0)} per person)"
                 ws.merge_cells(f'A{row}:E{row}')
                 row += 1
         
@@ -1114,7 +1239,7 @@ def download_excel():
         ws.merge_cells(f'A{row}:E{row}')
         row += 1
         
-        for tip in park_data['tips']:
+        for tip in park_data.get('tips', []):
             ws[f'A{row}'] = "• " + tip
             ws.merge_cells(f'A{row}:E{row}')
             row += 1
@@ -1214,6 +1339,28 @@ def download_excel():
     response.headers['Content-Disposition'] = 'attachment; filename=Disney_Lightning_Lane_Plan.xlsx'
     
     return response
+
+@app.route("/wait_times")
+def wait_times():
+    """Page for viewing current wait times by park"""
+    # Create planner to access wait time data
+    planner = DisneyLightningLanePlanner()
+    
+    # Dictionary to store wait times for each park
+    parks_wait_times = {}
+    
+    # Fetch wait times for all Disney World parks
+    for park_name, park_id in planner.queue_times_park_ids.items():
+        parks_wait_times[park_name] = planner.get_wait_times(park_name)
+    
+    # Add attribution for Queue-Times.com
+    queue_times_attribution = "Wait time data powered by Queue-Times.com"
+    
+    return render_template(
+        "wait_times.html", 
+        parks_wait_times=parks_wait_times,
+        queue_times_attribution=queue_times_attribution
+    )
 
 
 if __name__ == "__main__":

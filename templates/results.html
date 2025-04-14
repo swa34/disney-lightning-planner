@@ -361,7 +361,18 @@
                                     {% if park_data.single_passes|length > 0 %}
                                     <ul>
                                         {% for pass in park_data.single_passes %}
-                                        <li>{{ pass.name }} (${{ pass.min }}-${{ pass.max }} per person)</li>
+                                        <li>
+                                            {{ pass.name }} (${{ pass.min }}-${{ pass.max }} per person)
+                                            {% if pass.wait_time != "Unknown" %}
+                                                <span class="badge 
+                                                    {% if pass.wait_time|int > 60 %}bg-danger
+                                                    {% elif pass.wait_time|int > 30 %}bg-warning
+                                                    {% else %}bg-success{% endif %}">
+                                                    Current wait: {{ pass.wait_time }} min
+                                                    {% if not pass.is_open %} (Closed){% endif %}
+                                                </span>
+                                            {% endif %}
+                                        </li>
                                         {% endfor %}
                                     </ul>
                                     {% else %}
@@ -382,6 +393,44 @@
                                             </ul>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            
+                            <!-- New wait times table section -->
+                            <div class="mt-4">
+                                <h5>Current Wait Times:</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Attraction</th>
+                                                <th>Wait Time</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for ride_name, wait_data in park_data.wait_times.items() %}
+                                            <tr>
+                                                <td>{{ ride_name }}</td>
+                                                <td>
+                                                    <span class="badge 
+                                                        {% if wait_data.wait_time|int > 60 %}bg-danger
+                                                        {% elif wait_data.wait_time|int > 30 %}bg-warning
+                                                        {% else %}bg-success{% endif %} rounded-pill">
+                                                        {{ wait_data.wait_time }} min
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    {% if wait_data.is_open %}
+                                                        <span class="text-success"><i class="bi bi-check-circle-fill"></i> Open</span>
+                                                    {% else %}
+                                                        <span class="text-danger"><i class="bi bi-x-circle-fill"></i> Closed</span>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -415,8 +464,6 @@
                     </ul>
                 </div>
                 <div class="col-md-6">
-
-
                     <h5>Additional Tips:</h5>
                     <ul class="tip-list">
                         {% for tip in general_tips %}
@@ -439,6 +486,7 @@
             </a>
             <a href="{{ url_for('index') }}" class="btn btn-primary disney-btn-primary">Start New Plan</a>
         </div>
+        <p class="text-muted small">{{ queue_times_attribution }}</p>
     </div>
 </div>
 {% endblock %}

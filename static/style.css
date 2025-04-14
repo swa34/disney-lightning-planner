@@ -231,3 +231,60 @@
         height: 25px;
     }
 }
+
+# Add these styles to the existing style.css file:
+
+/* Wait Times Page Styles */
+.attraction-table {
+    margin-bottom: 2rem;
+}
+
+.attraction-table th {
+    background-color: var(--disney-blue);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.attraction-filter {
+    margin-bottom: 1rem;
+}
+
+/* Badge colors for wait times */
+.badge.bg-success {
+    background-color: var(--disney-green) !important;
+}
+
+.badge.bg-warning {
+    background-color: var(--disney-yellow) !important;
+    color: #333 !important;
+}
+
+.badge.bg-danger {
+    background-color: #ff4d4d !important;
+}
+
+/* Closed attraction styles */
+tr.attraction-closed {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #6c757d;
+}
+
+/* Hover effect for table rows */
+.attraction-table tbody tr:hover {
+    background-color: rgba(0, 120, 210, 0.05);
+    cursor: pointer;
+}
+
+/* Auto-refresh indicator */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.refresh-indicator {
+    display: inline-block;
+    animation: spin 2s linear infinite;
+    margin-right: 5px;
+}

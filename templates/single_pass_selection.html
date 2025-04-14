@@ -60,7 +60,19 @@
                                                id="attr_{{ park_info.index }}_{{ loop.index }}"
                                                data-park-index="{{ park_info.index }}">
                                         <label class="form-check-label" for="attr_{{ park_info.index }}_{{ loop.index }}">
-                                            {{ attraction.name }} (${{ attraction.min_cost }}-${{ attraction.max_cost }} per person)
+                                            {{ attraction.name }} 
+                                            (${{ attraction.min_cost }}-${{ attraction.max_cost }} per person)
+                                            
+                                            <!-- New wait time display - fixed for numeric comparison -->
+                                            {% if attraction.wait_time != "Unknown" %}
+                                                <span class="badge 
+                                                    {% if attraction.wait_time|int > 60 %}bg-danger
+                                                    {% elif attraction.wait_time|int > 30 %}bg-warning
+                                                    {% else %}bg-success{% endif %}">
+                                                    Current wait: {{ attraction.wait_time }} min
+                                                    {% if not attraction.is_open %} (Closed){% endif %}
+                                                </span>
+                                            {% endif %}
                                         </label>
                                     </div>
                                     {% endfor %}
@@ -74,6 +86,7 @@
                     {% endfor %}
                     
                     <div class="text-center mt-4">
+                        <p class="small text-muted">Wait times data powered by Queue-Times.com</p>
                         <a href="{{ url_for('park_selection') }}" class="btn btn-secondary me-2">Back</a>
                         <button type="submit" class="btn btn-primary disney-btn-primary">See Results</button>
                     </div>
