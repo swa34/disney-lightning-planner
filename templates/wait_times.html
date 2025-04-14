@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+
+{% block title %}Disney World Wait Times - Live Attraction Wait Times{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card disney-card mb-4">
+        <div class="card-header disney-card-header">
+            <h2 class="card-title mb-0">Disney World Live Wait Times</h2>
+        </div>
+        <div class="card-body">
+            <p class="lead">Current wait times for all attractions at Walt Disney World Resort parks. Data is refreshed every 5 minutes.</p>
+            
+            <!-- Park tabs -->
+            <ul class="nav nav-tabs mb-4" id="parkTabs" role="tablist">
+                {% for park_name in parks_wait_times.keys() %}
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link {% if loop.first %}active{% endif %}" 
+                            id="{{ park_name|replace(' ', '-')|lower }}-tab" 
+                            data-bs-toggle="tab" 
+                            data-bs-target="#{{ park_name|replace(' ', '-')|lower }}" 
+                            type="button" 
+                            role="tab" 
+                            aria-controls="{{ park_name|replace(' ', '-')|lower }}" 
+                            aria-selected="{% if loop.first %}true{% else %}false{% endif %}">
+                        {{ park_name }}
+                    </button>
+                </li>
+                {% endfor %}
+            </ul>
+            
+            <!-- Tab content -->
+            <div class="tab-content" id="parkTabContent">
+                {% for park_name, wait_times in parks_wait_times.items() %}
+                <div class="tab-pane fade {% if loop.first %}show active{% endif %}" 
+                     id="{{ park_name|replace(' ', '-')|lower }}" 
+                     role="tabpanel" 
+                     aria-labelledby="{{ park_name|replace(' ', '-')|lower }}-tab">
+                    
+                    <!-- Sorting and filtering options -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                                <input type="text" class="form-control attraction-filter" 
+                                       placeholder="Search for an attraction..." 
+                                       data-target="{{ park_name|replace(' ', '-')|lower }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="btn-group float-end" role="group">
+                                <button type="button" class="btn btn-outline-primary sort-btn" 
+                                        data-sort="name" data-target="{{ park_name|replace(' ', '-')|lower }}">
+                                    Sort by Name
+                                </button>
+                                <button type="button" class="btn btn-outline-primary sort-btn" 
+                                        data-sort="wait" data-target="{{ park_name|replace(' ', '-')|lower }}">
+                                    Sort by Wait Time
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wait times table -->
+                    <div class="table-responsive">
+                        <table class="table table-hover attraction-table" id="{{ park_name|replace(' ', '-')|lower }}-table">
+                            <thead>
+                                <tr>
+                                    <th>Attraction</th>
+                                    <th>Wait Time</th>
+                                    <th>Status</th>
+                                    <th>Last Updated</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for attraction_name, attraction_data in wait_times.items() %}
+                                <tr>
+                                    <td>{{ attraction_name }}</td>
+                                    <td data-wait="{{ attraction_data.wait_time|int }}">
+                                        <span class="badge 
+                                            {% if attraction_data.wait_time|int > 60 %}bg-danger
+                                            {% elif attraction_data.wait_time|int > 30 %}bg-warning
+                                            {% else %}bg-success{% endif %} rounded-pill">
+                                            {{ attraction_data.wait_time }} min
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {% if attraction_data.is_open %}
+                                            <span class="text-success"><i class="bi bi-check-circle-fill"></i> Open</span>
+                                        {% else %}
+                                            <span class="text-danger"><i class="bi bi-x-circle-fill"></i> Closed</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if attraction_data.last_updated %}
+                                            {{ attraction_data.last_updated|replace('T', ' ')|replace('.000Z', '') }}
+                                        {% else %}
+                                            Unknown
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    {% if wait_times|length == 0 %}
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle"></i> No wait time data available for {{ park_name }} at the moment. Please try again later.
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Auto-refresh notice -->
+            <div class="text-center mt-4">
+                <p class="text-muted small">
+                    <i class="bi bi-arrow-clockwise me-1"></i> 
+                    Wait times automatically refresh every 5 minutes. Last refresh: <span id="last-refresh-time"></span>
+                </p>
+                <p class="text-muted small">{{ queue_times_attribution }}</p>
+                
+                <!-- Back button -->
+                <a href="{{ url_for('index') }}" class="btn btn-secondary mt-2">
+                    <i class="bi bi-arrow-left"></i> Back to Planner
+                </a>
+                
+                <!-- Manual refresh button -->
+                <button id="refresh-btn" class="btn btn-primary disney-btn-primary mt-2">
+                    <i class="bi bi-arrow-clockwise"></i> Refresh Now
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Set initial last refresh time
+    document.getElementById('last-refresh-time').textContent = new Date().toLocaleTimeString();
+    
+    // Auto-refresh functionality (every 5 minutes)
+    setInterval(function() {
+        location.reload();
+    }, 5 * 60 * 1000);
+    
+    // Manual refresh button
+    document.getElementById('refresh-btn').addEventListener('click', function() {
+        location.reload();
+    });
+    
+    // Sorting functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const sortButtons = document.querySelectorAll('.sort-btn');
+        
+        sortButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const sortBy = this.getAttribute('data-sort');
+                const targetTableId = this.getAttribute('data-target') + '-table';
+                const table = document.getElementById(targetTableId);
+                const tbody = table.querySelector('tbody');
+                const rows = Array.from(tbody.querySelectorAll('tr'));
+                
+                // Sort rows
+                rows.sort((a, b) => {
+                    if (sortBy === 'name') {
+                        const nameA = a.cells[0].textContent.trim().toLowerCase();
+                        const nameB = b.cells[0].textContent.trim().toLowerCase();
+                        return nameA.localeCompare(nameB);
+                    } else if (sortBy === 'wait') {
+                        const waitA = parseInt(a.cells[1].getAttribute('data-wait')) || 0;
+                        const waitB = parseInt(b.cells[1].getAttribute('data-wait')) || 0;
+                        return waitB - waitA; // Descending order for wait times
+                    }
+                    return 0;
+                });
+                
+                // Remove existing rows
+                while (tbody.firstChild) {
+                    tbody.removeChild(tbody.firstChild);
+                }
+                
+                // Append sorted rows
+                rows.forEach(row => {
+                    tbody.appendChild(row);
+                });
+                
+                // Update active button state
+                sortButtons.forEach(btn => {
+                    if (btn.getAttribute('data-target') === this.getAttribute('data-target')) {
+                        btn.classList.remove('btn-outline-primary');
+                        btn.classList.add('btn-primary');
+                    }
+                });
+                this.classList.remove('btn-outline-primary');
+                this.classList.add('btn-primary');
+            });
+        });
+        
+        // Filtering functionality
+        const filterInputs = document.querySelectorAll('.attraction-filter');
+        
+        filterInputs.forEach(input => {
+            input.addEventListener('keyup', function() {
+                const searchTerm = this.value.toLowerCase();
+                const targetTableId = this.getAttribute('data-target') + '-table';
+                const table = document.getElementById(targetTableId);
+                const rows = table.querySelectorAll('tbody tr');
+                
+                rows.forEach(row => {
+                    const attractionName = row.cells[0].textContent.toLowerCase();
+                    if (attractionName.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>
+{% endblock %}
