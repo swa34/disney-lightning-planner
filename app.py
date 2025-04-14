@@ -251,11 +251,6 @@ def results():
         for i, daily in enumerate(scenario["daily"]):
             scenario["daily"][i]["date"] = daily["date"].strftime("%A, %B %d, %Y")
 
-    # Fetch current wait times for all parks
-    park_wait_times = {}
-    for park in planner.user_data["parks"]:
-        park_wait_times[park] = planner.get_wait_times(park)
-
     # Get park recommendations and tips
     park_recommendations = {}
 
@@ -282,29 +277,10 @@ def results():
 
             for attraction in selected:
                 cost_range = planner.single_pass_costs[park][attraction]
-                
-                # Get wait time info if available
-                wait_time = "Unknown"
-                is_open = False
-                
-                # Try exact match
-                if attraction in park_wait_times[park]:
-                    wait_time = park_wait_times[park][attraction].get("wait_time", "Unknown")
-                    is_open = park_wait_times[park][attraction].get("is_open", False)
-                else:
-                    # Try to find a close match if exact match isn't found
-                    for wait_time_name, wait_data in park_wait_times[park].items():
-                        if attraction in wait_time_name or wait_time_name in attraction:
-                            wait_time = wait_data.get("wait_time", "Unknown")
-                            is_open = wait_data.get("is_open", False)
-                            break
-                
                 single_passes.append({
                     "name": attraction,
                     "min": cost_range["min"],
                     "max": cost_range["max"],
-                    "wait_time": wait_time,
-                    "is_open": is_open,
                 })
 
         # Get premier pass info
@@ -323,7 +299,6 @@ def results():
             "single_passes": single_passes,
             "premier_info": premier_info,
             "tips": tips,
-            "wait_times": park_wait_times[park],
         }
     
     # Safely get booking information
@@ -367,7 +342,6 @@ def results():
         user_data=planner.user_data,
         scenarios=scenarios,
         park_recommendations=park_recommendations,
-        park_wait_times=park_wait_times,
         general_tips=planner.general_tips,
         zip=zip,
         booking_dates=booking_dates,

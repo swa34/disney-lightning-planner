@@ -363,15 +363,7 @@
                                         {% for pass in park_data.single_passes %}
                                         <li>
                                             {{ pass.name }} (${{ pass.min }}-${{ pass.max }} per person)
-                                            {% if pass.wait_time != "Unknown" %}
-                                                <span class="badge 
-                                                    {% if pass.wait_time|int > 60 %}bg-danger
-                                                    {% elif pass.wait_time|int > 30 %}bg-warning
-                                                    {% else %}bg-success{% endif %}">
-                                                    Current wait: {{ pass.wait_time }} min
-                                                    {% if not pass.is_open %} (Closed){% endif %}
-                                                </span>
-                                            {% endif %}
+                                           
                                         </li>
                                         {% endfor %}
                                     </ul>
