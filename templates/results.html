@@ -395,44 +395,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <!-- New wait times table section -->
-                            <div class="mt-4">
-                                <h5>Current Wait Times:</h5>
-                                <div class="table-responsive">
-                                    <table class="table table-sm table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Attraction</th>
-                                                <th>Wait Time</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for ride_name, wait_data in park_data.wait_times.items() %}
-                                            <tr>
-                                                <td>{{ ride_name }}</td>
-                                                <td>
-                                                    <span class="badge 
-                                                        {% if wait_data.wait_time|int > 60 %}bg-danger
-                                                        {% elif wait_data.wait_time|int > 30 %}bg-warning
-                                                        {% else %}bg-success{% endif %} rounded-pill">
-                                                        {{ wait_data.wait_time }} min
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    {% if wait_data.is_open %}
-                                                        <span class="text-success"><i class="bi bi-check-circle-fill"></i> Open</span>
-                                                    {% else %}
-                                                        <span class="text-danger"><i class="bi bi-x-circle-fill"></i> Closed</span>
-                                                    {% endif %}
-                                                </td>
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
