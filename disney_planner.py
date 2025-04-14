@@ -1,5 +1,7 @@
 import datetime
 
+import requests
+
 
 class DisneyLightningLanePlanner:
     def __init__(self):
@@ -112,6 +114,14 @@ class DisneyLightningLanePlanner:
             "Afternoon thunderstorms are common in June - plan indoor activities from 2-5 PM",
         ]
 
+        # Queue-Times API park IDs
+        self.queue_times_park_ids = {
+            "Magic Kingdom": 6,
+            "EPCOT": 5,
+            "Hollywood Studios": 7,
+            "Animal Kingdom": 8,
+        }
+
         # User data
         self.user_data = {
             "number_of_people": 0,
@@ -125,6 +135,53 @@ class DisneyLightningLanePlanner:
             "include_premier": True,
             "selected_single_passes": {},  # Will store user's selected Single Pass rides for each park
         }
+
+    def get_wait_times(self, park_name):
+        """
+        Fetch the current wait times for a specific park using the Queue-Times API
+        
+        Args:
+            park_name (str): The name of the park (Magic Kingdom, EPCOT, etc.)
+            
+        Returns:
+            dict: Dictionary mapping attraction names to their wait times
+        """
+        wait_times = {}
+        
+        # Get the park ID from our mapping
+        park_id = self.queue_times_park_ids.get(park_name)
+        if not park_id:
+            return wait_times
+            
+        try:
+            # Make API request to Queue-Times
+            url = f"https://queue-times.com/parks/{park_id}/queue_times.json"
+            response = requests.get(url, timeout=5)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Process lands and their rides
+                for land in data.get("lands", []):
+                    for ride in land.get("rides", []):
+                        wait_times[ride["name"]] = {
+                            "wait_time": ride["wait_time"],
+                            "is_open": ride["is_open"],
+                            "last_updated": ride["last_updated"]
+                        }
+                
+                # Process standalone rides
+                for ride in data.get("rides", []):
+                    wait_times[ride["name"]] = {
+                        "wait_time": ride["wait_time"],
+                        "is_open": ride["is_open"],
+                        "last_updated": ride["last_updated"]
+                    }
+            
+        except Exception as e:
+            print(f"Error fetching wait times for {park_name}: {e}")
+            
+        return wait_times
 
     def calculate_costs(self):
         """Calculate costs for different Lightning Lane scenarios."""
