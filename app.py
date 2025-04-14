@@ -4,29 +4,16 @@ import json
 import os
 import tempfile
 
-import redis  # Add this import
+import openpyxl
 from flask import (Flask, flash, make_response, redirect, render_template,
                    request, session, url_for)
-from flask_session import Flask_Session  # Add this import
+from openpyxl.styles import Alignment, Font, PatternFill
+from openpyxl.utils import get_column_letter
 
 from disney_planner import DisneyLightningLanePlanner
 
-# Create Flask app
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-
-# Configure server-side session storage
-app.config["SESSION_TYPE"] = "filesystem"  # Simplest option if you don't have Redis set up
-# If you want to use Redis instead, uncomment these lines:
-# app.config["SESSION_TYPE"] = "redis"
-# app.config["SESSION_REDIS"] = redis.from_url("redis://localhost:6379")
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_USE_SIGNER"] = True
-
-# Initialize the Flask-Session extension
-Flask_Session(app)
-
-# Rest of your code follows...
 
 
 # For the index route - no changes needed
