@@ -4,27 +4,28 @@ import json
 import os
 import tempfile
 import zipfile
-import reportlab
 
 import openpyxl
-from flask import (
-    Flask,
-    flash,
-    make_response,
-    redirect,
-    render_template,
-    send_from_directory,
-    request,
-    session,
-    url_for,
-)
+import reportlab
+from flask import (Flask, flash, make_response, redirect, render_template,
+                   request, send_from_directory, session, url_for)
+from openpyxl.drawing.image import Image as XLImage
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+from reportlab.lib.units import inch
+from reportlab.platypus import (Image, Paragraph, SimpleDocTemplate, Spacer,
+                                Table, TableStyle)
 
 from disney_planner import DisneyLightningLanePlanner
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
+
+# Define static folder explicitly to ensure PayPal QR code can be found
+app.static_folder = 'static'
 
 
 # For the index route - no changes needed
@@ -462,10 +463,10 @@ def parse_date(date_str):
     return None
 
 
-# Complete download_pdf function with fixed booking dates for off-site guests
+# Complete download_pdf function with QR code addition
 @app.route("/download_pdf")
 def download_pdf():
-    """Generate and download a PDF of the plan results using ReportLab"""
+    """Generate and download a PDF of the plan results using ReportLab with PayPal QR code"""
     # Get planner data from session
     user_data = session.get("user_data", {})
     scenarios = session.get("scenarios", {})
@@ -523,18 +524,6 @@ def download_pdf():
 
     # Create a PDF using ReportLab
     from io import BytesIO
-
-    from reportlab.lib import colors
-    from reportlab.lib.pagesizes import letter
-    from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
-    from reportlab.lib.units import inch
-    from reportlab.platypus import (
-        Paragraph,
-        SimpleDocTemplate,
-        Spacer,
-        Table,
-        TableStyle,
-    )
 
     # Create PDF document
     buffer = BytesIO()
@@ -1062,6 +1051,28 @@ def download_pdf():
             )
         )
 
+    # Add PayPal QR Code section before the footer
+    elements.append(Paragraph("Support this tool", styles["DisneyHeading3"]))
+    elements.append(
+        Paragraph(
+            "If you found this planning tool helpful, please consider supporting our ongoing development.",
+            styles["Normal"],
+        )
+    )
+
+    # Add the PayPal QR code image
+    qr_path = os.path.join(app.static_folder, 'images', 'QR Code.png')
+    if os.path.exists(qr_path):
+        qr_img = Image(qr_path, width=1.5*inch, height=1.5*inch)
+        elements.append(qr_img)
+        
+    elements.append(
+        Paragraph(
+            "Scan the QR code above to make a donation via PayPal. Thank you for your support!",
+            styles["Normal"],
+        )
+    )
+
     # Footer
     elements.append(Spacer(1, 0.5 * inch))
     elements.append(
@@ -1546,6 +1557,41 @@ def download_excel():
                     pass
         adjusted_width = (max_length + 2) * 1.2
         ws.column_dimensions[column_letter].width = adjusted_width
+
+    # Create a Donation sheet with PayPal QR code
+    ws_donate = wb.create_sheet(title="Support Us")
+    
+    # Add title and information
+    ws_donate["A1"] = "Support this Disney World Planning Tool"
+    ws_donate["A1"].font = title_font
+    ws_donate.merge_cells("A1:D1")
+    ws_donate["A1"].alignment = Alignment(horizontal="center")
+    
+    ws_donate["A3"] = "Thank you for using our Disney World Lightning Lane Planner!"
+    ws_donate["A3"].font = subheader_font
+    ws_donate.merge_cells("A3:D3")
+    
+    ws_donate["A4"] = "If you found this tool helpful for your trip planning, please consider supporting our ongoing development."
+    ws_donate.merge_cells("A4:D4")
+    
+    # Add PayPal QR code
+    qr_path = os.path.join(app.static_folder, 'images', 'QR Code.png')
+    if os.path.exists(qr_path):
+        img = XLImage(qr_path)
+        # Position the image at cell B6
+        ws_donate.add_image(img, 'B6')
+        
+    # Add instructions
+    ws_donate["A14"] = "Scan the QR code above to make a donation via PayPal."
+    ws_donate.merge_cells("A14:D14")
+    
+    ws_donate["A15"] = "Thank you for your support!"
+    ws_donate["A15"].font = subheader_font
+    ws_donate.merge_cells("A15:D15")
+    
+    # Set column widths in donation sheet
+    for col in ['A', 'B', 'C', 'D']:
+        ws_donate.column_dimensions[col].width = 20
 
     # Save the workbook to a BytesIO object
     output = io.BytesIO()
