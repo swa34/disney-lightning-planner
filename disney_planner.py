@@ -7,10 +7,10 @@ class DisneyLightningLanePlanner:
     def __init__(self):
         # Park costs for Multi Pass (per person)
         self.multi_pass_costs = {
-            "Magic Kingdom": {"min": 15, "max": 39, "june_min": 35, "june_max": 39},
-            "EPCOT": {"min": 15, "max": 35, "june_min": 25, "june_max": 30},
-            "Hollywood Studios": {"min": 15, "max": 35, "june_min": 30, "june_max": 35},
-            "Animal Kingdom": {"min": 15, "max": 30, "june_min": 20, "june_max": 25},
+            "Magic Kingdom": {"min": 20, "max": 39, "june_min": 35, "june_max": 39},
+            "EPCOT": {"min": 15, "max": 35, "june_min": 25, "june_max": 32},
+            "Hollywood Studios": {"min": 20, "max": 35, "june_min": 30, "june_max": 35},
+            "Animal Kingdom": {"min": 15, "max": 30, "june_min": 20, "june_max": 29},
         }
 
         # Updated Park costs for Single Pass attractions (per person)
@@ -22,7 +22,6 @@ class DisneyLightningLanePlanner:
             "EPCOT": {"Guardians of the Galaxy: Cosmic Rewind": {"min": 16, "max": 19}},
             "Hollywood Studios": {
                 "Star Wars: Rise of the Resistance": {"min": 20, "max": 25},
-                "Mickey & Minnie's Runaway Railway": {"min": 15, "max": 18},
             },
             "Animal Kingdom": {"Avatar Flight of Passage": {"min": 15, "max": 18}},
         }
@@ -88,7 +87,7 @@ class DisneyLightningLanePlanner:
                 "This park has the highest demand for Lightning Lane passes",
                 "Early morning arrival (45+ minutes before opening) is essential without Lightning Lane",
                 "Rise of the Resistance is the highest priority Single Pass in all of Disney World",
-                "Mickey & Minnie's Runaway Railway is available as Single Pass but typically has shorter waits",
+                "Mickey & Minnie's Runaway Railway is now available as Multi-Pass Pass",
                 "Use single rider line for Millennium Falcon if available and your group doesn't mind separation",
                 "Shows like Indiana Jones and Frozen Sing-Along can provide air-conditioned breaks",
             ],
